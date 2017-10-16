@@ -6,31 +6,21 @@ using System.Threading.Tasks;
 
 namespace SmartHome
 {
-    public class Lamp : Device
+    class Fan : Device
     {
         //private bool _isOn;
 
-        public Lamp(string room /*= "N/A"*/)  : base(room)
+        public Fan(string room) : base(room)
         {
-            //if (string.IsNullOrEmpty(room))
-            //    room = "N/A";
-            
-            //Room = room;
-            this.DeviceType = "lamp";
+            //string baseRoom = base.Room;
+            //string thisRoom = this.Room;
 
-            Intensity = 0;
+            this.DeviceType = "fan";
         }
-
-        public int Intensity { get; set; }
 
         //public string DeviceType { get; private set; }
 
         //public string Room { get; private set; }
-
-        //public string GetStatus()
-        //{
-        //    return IsOn ? "on" : "off";
-        //}
 
         //public string Status
         //{
@@ -50,14 +40,6 @@ namespace SmartHome
         //public bool TurnOff()
         //{
         //    _isOn = false;
-
-        //    return _isOn;
-        //}
-
-        //public bool TurnOn(int intensity)
-        //{
-        //    _isOn = true;
-        //    //set intensity
 
         //    return _isOn;
         //}

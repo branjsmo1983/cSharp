@@ -8,6 +8,11 @@ namespace SmartHome
 {
     class Program
     {
+        void NonStaticMethod()
+        {
+
+        }
+
         static void Main(string[] args)
         {
             Lamp salonLamp = new Lamp("Salon");
@@ -17,22 +22,53 @@ namespace SmartHome
             WriteStatus(salonLamp);
             salonLamp.TurnOn();
             WriteStatus(salonLamp);
-        
-            Lamp kitchenLamp = new Lamp("Kitchen");
-            WriteStatus(kitchenLamp);
 
-            Lamp kitchenBackup = kitchenLamp;
-            kitchenLamp = salonLamp;
-            kitchenLamp.TurnOff();
+            //Lamp kitchenLamp = new Lamp("Kitchen");
+            //WriteStatus(kitchenLamp);
 
-            WriteStatus(salonLamp);
+            //Lamp kitchenBackup = kitchenLamp;
+            ////kitchenLamp = salonLamp;
+            //kitchenLamp.TurnOff();
+
+            //WriteStatus(salonLamp);
+
+            Fan kitchenFan = new Fan("Kitchen");
+            WriteStatus(kitchenFan);
+            kitchenFan.TurnOn();
+            WriteStatus(kitchenFan);
 
             Console.ReadLine();
         }
 
-        private static void WriteStatus(Lamp lamp)
+        private static void WriteStatus(Device device)
         {
-            Console.WriteLine($"{ lamp.Room } lamp is { lamp.Status }");
+            //string deviceType = string.Empty;
+            //if (device is Lamp)
+            //{
+            //    deviceType = "lamp";
+            //}
+            //else if (device is Fan)
+            //{
+            //    deviceType = "fan";
+            //}
+            string deviceType = device.DeviceType;
+
+            Console.WriteLine($"{ device.Room } { deviceType } is { device.Status }");
+            if (device is Lamp)
+            {
+                Lamp currentLamp = (Lamp)device;
+                Console.WriteLine($"Current lamp intensity: { currentLamp.Intensity }");
+            }
         }
+
+        //private static void WriteStatus(Lamp lamp)
+        //{
+        //    Console.WriteLine($"{ lamp.Room } lamp is { lamp.Status }");
+        //}
+
+        //private static void WriteStatus(Fan fan)
+        //{
+        //    Console.WriteLine($"{ fan.Room } fan is { fan.Status }");
+        //}
     }
 }
