@@ -23,6 +23,19 @@ namespace SmartHome
 
         public int Intensity { get; set; }
 
+        public override int CalculateConsumption()
+        {
+            if (_isOn)
+                return 50;
+            else
+                return 0;
+        }
+
+        public override string GetDescription()
+        {
+            return $"Current lamp intensity: { this.Intensity }";
+        }
+
         //public string DeviceType { get; private set; }
 
         //public string Room { get; private set; }

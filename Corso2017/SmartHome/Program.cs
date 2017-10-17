@@ -15,7 +15,10 @@ namespace SmartHome
 
         static void Main(string[] args)
         {
-            Lamp salonLamp = new Lamp("Salon");
+            //Device d = new Device("");
+
+            Device salonLamp = new Lamp("Salon");
+            
             //salon.Room = "Salon";
             //string status = salon.IsOn ? "on" : "off";
 
@@ -32,10 +35,25 @@ namespace SmartHome
 
             //WriteStatus(salonLamp);
 
-            Fan kitchenFan = new Fan("Kitchen");
+            Device kitchenFan = new Fan("Kitchen");
             WriteStatus(kitchenFan);
             kitchenFan.TurnOn();
             WriteStatus(kitchenFan);
+
+            Device ledBathroomLamp = new LedLamp("Bathroom");
+            
+            Lamp l = (Lamp)ledBathroomLamp;
+            //invalid cast
+            //Fan f = (Fan)ledBathroomLamp;
+            
+            WriteStatus(ledBathroomLamp);
+            ledBathroomLamp.TurnOn();
+            WriteStatus(ledBathroomLamp);
+
+            Device halogenBathroomLamp = new HalogenLamp("Bathroom");
+            WriteStatus(halogenBathroomLamp);
+            halogenBathroomLamp.TurnOn();
+            WriteStatus(halogenBathroomLamp);
 
             Console.ReadLine();
         }
@@ -53,12 +71,18 @@ namespace SmartHome
             //}
             string deviceType = device.DeviceType;
 
-            Console.WriteLine($"{ device.Room } { deviceType } is { device.Status }");
-            if (device is Lamp)
-            {
-                Lamp currentLamp = (Lamp)device;
-                Console.WriteLine($"Current lamp intensity: { currentLamp.Intensity }");
-            }
+            Console.WriteLine($"{ device.Room } { deviceType } is { device.Status }, consumption: { device.CalculateConsumption() }");
+            Console.WriteLine(device.GetDescription());
+            //if (device is Lamp)
+            //{
+            //    Lamp currentLamp = (Lamp)device;
+            //    Console.WriteLine($"Current lamp intensity: { currentLamp.Intensity }");
+            //}
+            //else if (device is Fan)
+            //{
+            //    Fan currentFan = (Fan)device;
+            //    Console.WriteLine($"Current fan speed: { currentFan.Speed }");
+            //}
         }
 
         //private static void WriteStatus(Lamp lamp)

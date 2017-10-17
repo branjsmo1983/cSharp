@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome
 {
-    public class Device
+    public abstract class Device
     {
-        private bool _isOn;
+        protected bool _isOn;
 
         public Device(string room)
         {
@@ -45,5 +45,14 @@ namespace SmartHome
 
             return _isOn;
         }
+
+        public abstract int CalculateConsumption();
+
+        public abstract string GetDescription();
+
+        //public virtual int CalculateConsumption()
+        //{
+        //    return 0;
+        //}
     }
 }

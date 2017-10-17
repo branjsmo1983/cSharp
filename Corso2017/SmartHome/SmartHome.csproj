@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HalogenLamp.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Fan.cs" />
     <Compile Include="Lamp.cs" />
+    <Compile Include="LedLamp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
