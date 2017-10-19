@@ -45,6 +45,9 @@
     <Compile Include="HalogenLamp.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Fan.cs" />
+    <Compile Include="IObservableDevice.cs" />
+    <Compile Include="StatusWriters\ConsoleStatusWriter.cs" />
+    <Compile Include="StatusWriters\IStatusWriter.cs" />
     <Compile Include="Lamp.cs" />
     <Compile Include="LedLamp.cs" />
     <Compile Include="Program.cs" />

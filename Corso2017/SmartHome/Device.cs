@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartHome.StatusWriters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace SmartHome
 {
-    public abstract class Device
+    public abstract class Device : IObservableDevice
     {
         protected bool _isOn;
+
+        private List<IStatusWriter> _subscribers = new List<IStatusWriter>();
 
         public Device(string room)
         {
@@ -32,16 +35,44 @@ namespace SmartHome
             }
         }
 
+        public void AddSubscriber(IStatusWriter writer)
+        { 
+            if (!_subscribers.Contains(writer))
+                _subscribers.Add(writer);
+        }
+
+        public void RemoveSubscriber(IStatusWriter writer)
+        {
+            if (_subscribers.Contains(writer))
+                _subscribers.Remove(writer);
+        }
+
+        public void NotifyStatusChanged()
+        {
+            foreach (IStatusWriter subscriber in _subscribers)
+            {
+                subscriber.DeviceStatusChanged(this);
+            }
+        }
+
         public bool TurnOn()
         {
+            bool oldStatus = _isOn;
             _isOn = true;
+
+            if (oldStatus != _isOn)
+                NotifyStatusChanged();
 
             return _isOn;
         }
 
         public bool TurnOff()
         {
+            bool oldStatus = _isOn;
             _isOn = false;
+
+            if (oldStatus != _isOn)
+                NotifyStatusChanged();
 
             return _isOn;
         }
