@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures", "DataStruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome", "SmartHome\SmartHome.csproj", "{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{A24F77FC-80AF-4BB9-9457-2315EA96EEFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24F77FC-80AF-4BB9-9457-2315EA96EEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24F77FC-80AF-4BB9-9457-2315EA96EEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24F77FC-80AF-4BB9-9457-2315EA96EEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24F77FC-80AF-4BB9-9457-2315EA96EEFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
