@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperLogger\SuperLogger.csproj">
+      <Project>{84f1ec58-8b81-4ca8-ba4e-ee28b0908ad5}</Project>
+      <Name>SuperLogger</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

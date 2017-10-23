@@ -21,6 +21,9 @@ namespace SuperLoggerTest
         private static void ConfigureLog()
         {
             //configure logger for any writing method
+            //logger.AddLoggingTarget(file);
+            //logger.AddLoggingTarget(console);
+            //logger.AddLoggingTarget(database);
         }
 
         private static void TestLogInfo()
@@ -33,12 +36,17 @@ namespace SuperLoggerTest
 
         private static void TestLogError()
         {
-            //do something
-            //try/catch
-            //logger.LogError("", ex) or
-            //logger.Log(Error, "", ex) or
-            //Logger.Log(...)
-            throw new Exception("This is a test exception");
+            try
+            {
+                throw new Exception("This is a test exception");
+            }
+            catch (Exception ex)
+            {
+                //do something
+                //logger.LogError("", ex) or
+                //logger.Log(Error, "", ex) or
+                //Logger.Log(...)
+            }
         }
     }
 }
