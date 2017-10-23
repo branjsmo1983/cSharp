@@ -22,6 +22,7 @@ namespace SuperLoggerTest
         {
             _logger = new Logger();
             _logger.AddLogTarget(new ConsoleLogTarget());
+            _logger.AddLogTarget(new DebugLogTarget());
         }
 
         private static void TestLogInfo()
