@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SuperLogger;
+using SuperLogger.Targets;
+using System;
 
 namespace SuperLoggerTest
 {
     class Program
     {
+        static ILogger _logger;
+
         static void Main(string[] args)
         {
             ConfigureLog();
@@ -20,18 +20,13 @@ namespace SuperLoggerTest
 
         private static void ConfigureLog()
         {
-            //configure logger for any writing method
-            //logger.AddLoggingTarget(file);
-            //logger.AddLoggingTarget(console);
-            //logger.AddLoggingTarget(database);
+            _logger = new Logger();
+            _logger.AddLogTarget(new ConsoleLogTarget());
         }
 
         private static void TestLogInfo()
         {
-            //do something
-            //logger.LogInfo("") or
-            //logger.Log(Info, "") or
-            //Logger.Log(...)
+            _logger.LogInfo("This is a test info message");
         }
 
         private static void TestLogError()
@@ -42,10 +37,7 @@ namespace SuperLoggerTest
             }
             catch (Exception ex)
             {
-                //do something
-                //logger.LogError("", ex) or
-                //logger.Log(Error, "", ex) or
-                //Logger.Log(...)
+                _logger.LogError("This is a test error message", ex);
             }
         }
     }
