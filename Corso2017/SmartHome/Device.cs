@@ -9,6 +9,8 @@ namespace SmartHome
 {
     public abstract class Device : IObservableDevice
     {
+
+
         protected bool _isOn;
 
         private List<IStatusWriter> _subscribers = new List<IStatusWriter>();

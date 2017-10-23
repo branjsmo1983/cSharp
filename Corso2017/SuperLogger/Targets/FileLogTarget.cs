@@ -23,7 +23,7 @@ namespace SuperLogger.Targets
             }
             catch (FileNotFoundException fnfE)
             {
-                Console.WriteLine("File su cui scrivere non trovato " + fnfE.Message);
+                
                 throw fnfE;
             }
         }

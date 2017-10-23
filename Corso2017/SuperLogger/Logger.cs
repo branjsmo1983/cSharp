@@ -42,6 +42,7 @@ namespace SuperLogger
                 }
                 catch (Exception)
                 {
+                    
                     //nothing to do
                 }
             }
