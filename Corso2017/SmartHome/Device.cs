@@ -9,6 +9,9 @@ namespace SmartHome
 {
     public abstract class Device : IObservableDevice
     {
+        public delegate void DeviceStatusChangedEventHandler(Device device);
+        public event DeviceStatusChangedEventHandler StatusChanged;
+
         protected bool _isOn;
 
         private List<IStatusWriter> _subscribers = new List<IStatusWriter>();
@@ -49,6 +52,9 @@ namespace SmartHome
 
         public void NotifyStatusChanged()
         {
+            if (StatusChanged != null)
+                StatusChanged(this);
+
             foreach (IStatusWriter subscriber in _subscribers)
             {
                 subscriber.DeviceStatusChanged(this);
