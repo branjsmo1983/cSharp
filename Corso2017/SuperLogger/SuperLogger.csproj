@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ConsoleLogTarget.cs" />
     <Compile Include="Targets\DebugLogTarget.cs" />
+    <Compile Include="Targets\FileLogTarget.cs" />
     <Compile Include="Targets\ILogTarget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
