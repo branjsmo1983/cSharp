@@ -18,7 +18,11 @@ namespace SuperLogger.Targets
 
         public void WriteLog(LogEntry info)
         {
-            
+            using (FileStream fs = File.OpenWrite(_filePath))
+            using (StreamWriter sw = new StreamWriter(fs))
+            {
+                sw.WriteLine($"{ info.Date } - { info.Level } - { info.Message }");
+            }
         }
     }
 }
