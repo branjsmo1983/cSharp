@@ -10,6 +10,7 @@ namespace SuperLogger.Targets
     public class FileLogTarget : ILogTarget
     {
         readonly string _filePath;
+
         public FileLogTarget(string filePath)
         {
             _filePath = filePath;
@@ -17,15 +18,7 @@ namespace SuperLogger.Targets
 
         public void WriteLog(LogEntry info)
         {
-            try
-            {
-                File.AppendAllText(_filePath,info.Message);
-            }
-            catch (FileNotFoundException fnfE)
-            {
-                
-                throw fnfE;
-            }
+            
         }
     }
 }

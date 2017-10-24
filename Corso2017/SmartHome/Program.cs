@@ -9,14 +9,21 @@ namespace SmartHome
 {
     class Program
     {
+        static void Foo(Device device)
+        {
+
+        }
 
         static void Main(string[] args)
         {
             IStatusWriter consoleWriter = new ConsoleStatusWriter();
 
             Device salonLamp = new Lamp("Salon");
-            salonLamp.AddSubscriber(consoleWriter);
+            salonLamp.StatusChanged += consoleWriter.DeviceStatusChanged;
+
+            //salonLamp.AddSubscriber(consoleWriter);
             //salonLamp.AddSubscriber(new ConsoleStatusWriter());
+
             salonLamp.TurnOn();
             salonLamp.TurnOff();
 

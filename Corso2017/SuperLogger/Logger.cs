@@ -41,8 +41,8 @@ namespace SuperLogger
                     target.WriteLog(info);
                 }
                 catch (Exception)
-                {
-                    
+                { 
+                    //log on error,
                     //nothing to do
                 }
             }

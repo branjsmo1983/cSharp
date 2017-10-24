@@ -24,6 +24,8 @@ namespace SuperLoggerTest
         {
             _logger = new Logger();
             _logger.AddLogTarget(new ConsoleLogTarget());
+            _logger.AddLogTarget(new DebugLogTarget());
+
             string path = Assembly.GetExecutingAssembly().Location;
             path = Path.Combine(Path.GetDirectoryName(path), "log.txt");
             _logger.AddLogTarget(new FileLogTarget(path));
