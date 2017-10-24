@@ -8,6 +8,17 @@ namespace CSharp
 {
     public class Person
     {
+        public Person()
+        {
+
+        }
+
+        public Person(string nome, string cognome)
+        {
+            this.Nome = nome;
+            this.Cognome = cognome;
+        }
+
         string _nome;
         //string _cognome;
 

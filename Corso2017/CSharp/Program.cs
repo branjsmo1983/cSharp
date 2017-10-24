@@ -16,16 +16,18 @@ namespace CSharp
         /// <param name="args">Parametri di avvio</param>
         static void Main(string[] args)
         {
-            Do();
- 
-            string nome = "Mario";
-            Console.WriteLine(nome);
+            new DelegateSample().Run();
 
-            string nome2 = nome;
-            Console.WriteLine(nome2);
+            //Do();
+ 
+            //string nome = "Mario";
+            //Console.WriteLine(nome);
+
+            //string nome2 = nome;
+            //Console.WriteLine(nome2);
             
-            nome = "Giovanni";
-            Console.WriteLine(nome2);
+            //nome = "Giovanni";
+            //Console.WriteLine(nome2);
 
             Console.ReadLine();
         }
