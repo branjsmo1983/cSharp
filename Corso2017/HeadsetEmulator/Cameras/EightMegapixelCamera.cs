@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeadsetEmulator.Cameras
 {
@@ -11,18 +7,16 @@ namespace HeadsetEmulator.Cameras
         private bool _activated;
         public bool IsActive => _activated;
 
-      
-
         public ActionResult Activate()
         {
             _activated = true;
-            return new ActionResult(true, "activated is ok");
+            return new ActionResult(true, "Camera is now active");
         }
 
         public ActionResult Deactivate()
         {
             _activated = false;
-            return new ActionResult(true, "operation of deactivation is ok");
+            return new ActionResult(true, "Camera is now inactive");
         }
 
         public Photo TakeSnap()
@@ -33,7 +27,7 @@ namespace HeadsetEmulator.Cameras
             }
             else
             {
-                throw new InvalidOperationException("Activate camera before take a photo");
+                throw new InvalidOperationException("Activate camera before taking a photo");
             }
         }
     }

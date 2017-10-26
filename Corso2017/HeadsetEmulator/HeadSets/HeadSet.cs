@@ -1,9 +1,4 @@
 ﻿using HeadsetEmulator.Cameras;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeadsetEmulator.HeadSets
 {
@@ -57,11 +52,11 @@ namespace HeadsetEmulator.HeadSets
             if (result.Success)
             {
                 Photo photo = camera.TakeSnap();
-                return new ActionResult(true, "Photo Taked");
+                return new ActionResult(true, "Photo successfully taken");
             }
             else
             {
-                return new ActionResult(false, "No Photo Taked");
+                return new ActionResult(false, "No photo was taken. Camera is not active");
             }
         }
            

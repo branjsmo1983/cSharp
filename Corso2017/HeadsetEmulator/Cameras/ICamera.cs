@@ -6,6 +6,5 @@
         bool IsActive { get; }
         ActionResult Activate();
         ActionResult Deactivate();
-        
     }
 }
