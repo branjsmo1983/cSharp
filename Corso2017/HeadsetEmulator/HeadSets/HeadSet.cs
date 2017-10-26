@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HeadsetEmulator.HeadSets
 {
-    internal abstract class HeadSet 
+    internal abstract class HeadSet
     {
         protected ICamera _frontCamera;
         protected ICamera _rearCamera;
@@ -15,7 +15,7 @@ namespace HeadsetEmulator.HeadSets
         internal enum CameraPosition { Front, Rear }
 
         internal abstract string Model { get; }
-        
+
         internal ActionResult Call(string phoneNumber)
         {
             return null;
@@ -30,7 +30,7 @@ namespace HeadsetEmulator.HeadSets
         {
             return null;
         }
-        
+
         internal ActionResult ActivateCamera(CameraPosition camPosition)
         {
             return null;
@@ -43,7 +43,27 @@ namespace HeadsetEmulator.HeadSets
 
         internal ActionResult TakePicture(CameraPosition camPosition)
         {
-            return null;
+            ICamera camera;
+            if (CameraPosition.Front == camPosition)
+            {
+                camera = _frontCamera;
+            }
+            else
+            {
+                camera = _rearCamera;
+            }
+
+            ActionResult result = camera.Activate();
+            if (result.Success)
+            {
+                Photo photo = camera.TakeSnap();
+                return new ActionResult(true, "Photo Taked");
+            }
+            else
+            {
+                return new ActionResult(false, "No Photo Taked");
+            }
         }
+           
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="Cameras\ICamera.cs" />
     <Compile Include="HeadSets\Iphone6s.cs" />
     <Compile Include="HeadSets\Nokia3310.cs" />
+    <Compile Include="Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
