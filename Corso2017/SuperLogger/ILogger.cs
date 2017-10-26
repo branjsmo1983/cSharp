@@ -3,7 +3,7 @@ using System;
 
 namespace SuperLogger
 {
-    public interface ILogger
+    public interface ILogger : IDisposable
     {
         void LogInfo(string message);
 

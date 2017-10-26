@@ -47,5 +47,10 @@ namespace SuperLogger
                 }
             }
         }
+
+        public void Dispose()
+        {
+            _logTargets.Clear();
+        }
     }
 }
