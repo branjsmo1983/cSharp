@@ -44,6 +44,9 @@
     <Compile Include="Cameras\EightMegapixelCamera.cs" />
     <Compile Include="Cameras\FiveMegapixelsCamera.cs" />
     <Compile Include="Cameras\NoCamera.cs" />
+    <Compile Include="Emulator.cs" />
+    <Compile Include="Events\ICallStatusNotifier.cs" />
+    <Compile Include="Events\ICallStatusObserver.cs" />
     <Compile Include="HeadSets\GalaxyS.cs" />
     <Compile Include="HeadSets\HeadSet.cs" />
     <Compile Include="Cameras\ICamera.cs" />
