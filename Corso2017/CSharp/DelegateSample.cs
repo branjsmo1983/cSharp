@@ -49,14 +49,14 @@ namespace CSharp
             DoCalculate(Max);
 
             //parametro diretto come expr. lambda
-            DoCalculate((int a, int b) =>
+            DoCalculate(( a, b) =>
             {
                 return a * b;
             });
 
             //stessa cosa per Func<int, int, int>, che è sempre un delegate
             DoCalculateFunc(Max);
-            DoCalculateFunc((a, b) =>
+            DoCalculateFunc((a, b) => 
             {
                 return a * b;
             });

@@ -1,4 +1,5 @@
-﻿using HeadsetEmulator.Events;
+﻿using HeadsetEmulator.Cameras;
+using HeadsetEmulator.Events;
 using HeadsetEmulator.HeadSets;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace HeadsetEmulator
         private List<ICallStatusObserver> _observer;
         private readonly List<HeadSet> _headsets;
         private HeadSet _currentHeadSet;
+
+        public delegate void CameraActivationHandler(CameraActivationStatus cameraActivationstatus);
+        public event CameraActivationHandler CameraActivation;
 
         public Emulator()
         {
@@ -68,9 +72,12 @@ namespace HeadsetEmulator
             if (IsModelSelected())
             {
                 ActionResult action = _currentHeadSet.Call(number);
+                CallStatus status = new CallStatus(action.Success, number);
+                NotifyCallStatus(status);
 
             }
         }
+
 
         private bool IsModelSelected()
         {
@@ -79,17 +86,24 @@ namespace HeadsetEmulator
 
         public void AddCallStatusChangedObserver(ICallStatusObserver observer)
         {
-            throw new NotImplementedException();
+            if (!_observer.Contains(observer))
+                _observer.Add(observer);
+            
         }
 
         public void RemoveCallStatusChangedObserver(ICallStatusObserver observer)
         {
-            throw new NotImplementedException();
+            if (_observer.Contains(observer))
+                _observer.Remove(observer);
         }
 
-        public void NotifyCallStatus()
+        public void NotifyCallStatus(CallStatus status)
         {
-            throw new NotImplementedException();
+           foreach(var observer in _observer)
+            {
+                observer.CallStatusChanged(status.Status);
+            }
         }
+
     }
 }

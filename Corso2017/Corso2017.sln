@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{93EA0C0E-2AD9-4E85-8ADA-A02167ADB31F}"
 EndProject
@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emulator", "Emulator", "{A3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadsetEmulator", "HeadsetEmulator\HeadsetEmulator.csproj", "{5DB4A3ED-781C-4111-AE3D-47C522923CBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulatorTest", "EmulatorTest\EmulatorTest.csproj", "{C7921EA4-2652-4D4A-B70A-AA9C9C824965}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulatorTester", "EmulatorTester\EmulatorTester.csproj", "{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,10 +83,10 @@ Global
 		{5DB4A3ED-781C-4111-AE3D-47C522923CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DB4A3ED-781C-4111-AE3D-47C522923CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DB4A3ED-781C-4111-AE3D-47C522923CBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7921EA4-2652-4D4A-B70A-AA9C9C824965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7921EA4-2652-4D4A-B70A-AA9C9C824965}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7921EA4-2652-4D4A-B70A-AA9C9C824965}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7921EA4-2652-4D4A-B70A-AA9C9C824965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,7 +102,7 @@ Global
 		{84F1EC58-8B81-4CA8-BA4E-EE28B0908AD5} = {26BDC75D-3CE5-4F92-9DD8-0019C744596D}
 		{9FAC97F4-39D0-4C56-81F2-6631AF015A8E} = {26BDC75D-3CE5-4F92-9DD8-0019C744596D}
 		{5DB4A3ED-781C-4111-AE3D-47C522923CBE} = {A31C98D9-CFBA-41B0-AE22-75723ACE308A}
-		{C7921EA4-2652-4D4A-B70A-AA9C9C824965} = {A31C98D9-CFBA-41B0-AE22-75723ACE308A}
+		{AC31B43A-1C2A-4D6C-85AD-A8DDF0CF436F} = {A31C98D9-CFBA-41B0-AE22-75723ACE308A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30ECAB26-7E69-4CE6-BD13-B0B113B94141}

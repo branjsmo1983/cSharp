@@ -10,6 +10,6 @@ namespace HeadsetEmulator.Events
     {
         void AddCallStatusChangedObserver(ICallStatusObserver observer);
         void RemoveCallStatusChangedObserver(ICallStatusObserver observer);
-        void NotifyCallStatus();
+        void NotifyCallStatus(CallStatus status);
     }
 }
