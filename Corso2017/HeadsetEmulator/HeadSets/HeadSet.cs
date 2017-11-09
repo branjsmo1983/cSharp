@@ -17,7 +17,7 @@ namespace HeadsetEmulator.HeadSets
         internal ActionResult Call(string phoneNumber)
         {
             ActionResult result;
-            if (_callTime != DateTime.MinValue)
+            if (_callTime == DateTime.MinValue)
             {
                 _callTime = DateTime.Now;
                 result = new ActionResult(true, "Call start at time " + _callTime.ToString());
