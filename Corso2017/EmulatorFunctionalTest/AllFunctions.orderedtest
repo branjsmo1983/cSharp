@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="AllFunctions" storage="c:\_sources\corso-ires-2017\corso2017\emulatorfunctionaltest\allfunctions.orderedtest" id="f622e3b7-38ff-4348-b38f-f892c6a14c59" continueAfterFailure="true" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="d85cdcb9-ae27-7a2c-a0e7-73e117f1757f" name="TestGetModels" storage="bin\debug\emulatorfunctionaltest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="ef21e194-5dbe-4717-9e90-c49afac92f7f" name="TestSelectModel" storage="bin\debug\emulatorfunctionaltest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="766e14e3-ab5f-d023-8eb2-b2877e010d3e" name="TestCall" storage="bin\debug\emulatorfunctionaltest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

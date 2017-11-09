@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace HeadsetEmulator.Events
 {
-    public interface ICallStatusObserver
+    public class CallStatus
     {
-        void CallStatusChanged(CallStatus status);
+        public bool Status { get; set; }
+
+        public string PhoneNumber { get; set; }
     }
 }
