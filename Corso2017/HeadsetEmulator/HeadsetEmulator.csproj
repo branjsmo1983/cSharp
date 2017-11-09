@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionResult.cs" />
-    <Compile Include="Cameras\CameraActivationStatus.cs" />
+    <Compile Include="Events\CameraActivationStatus.cs" />
     <Compile Include="Cameras\EightMegapixelCamera.cs" />
     <Compile Include="Cameras\FiveMegapixelsCamera.cs" />
     <Compile Include="Cameras\NoCamera.cs" />

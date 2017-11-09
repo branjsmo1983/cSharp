@@ -8,6 +8,6 @@ namespace HeadsetEmulator.Events
 {
     public interface ICallStatusObserver
     {
-        void CallStatusChanged(bool status);
+        void CallStatusChanged(CallStatus status);
     }
 }

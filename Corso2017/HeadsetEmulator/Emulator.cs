@@ -1,5 +1,4 @@
-﻿using HeadsetEmulator.Cameras;
-using HeadsetEmulator.Events;
+﻿using HeadsetEmulator.Events;
 using HeadsetEmulator.HeadSets;
 using System;
 using System.Collections.Generic;
@@ -11,11 +10,11 @@ namespace HeadsetEmulator
 {
     public class Emulator : ICallStatusNotifier
     {
-        private List<ICallStatusObserver> _observer;
+        private List<ICallStatusObserver> _observers;
         private readonly List<HeadSet> _headsets;
         private HeadSet _currentHeadSet;
 
-        public delegate void CameraActivationHandler(CameraActivationStatus cameraActivationstatus);
+        public delegate void CameraActivationHandler(CameraActivationStatus status);
         public event CameraActivationHandler CameraActivation;
 
         public Emulator()
@@ -28,6 +27,7 @@ namespace HeadsetEmulator
             };
 
             _currentHeadSet = null;
+            _observers = new List<ICallStatusObserver>();
         }
 
         public List<string> GetModels()
@@ -72,38 +72,62 @@ namespace HeadsetEmulator
             if (IsModelSelected())
             {
                 ActionResult action = _currentHeadSet.Call(number);
-                CallStatus status = new CallStatus(action.Success, number);
-                NotifyCallStatus(status);
-
+                NotifyCallStatus(new CallStatus
+                {
+                    Status = action.Success,
+                    PhoneNumber = number
+                });
             }
         }
-
 
         private bool IsModelSelected()
         {
             return _currentHeadSet != null;
         }
 
+        public void ActiveRearCamera()
+        {
+            if (IsModelSelected())
+            {
+                ActionResult result = _currentHeadSet.ActivateCamera(HeadSet.CameraPosition.Rear);
+                OnCameraActivation(new CameraActivationStatus
+                {
+                    IsActive = result.Success,
+                    CameraType = HeadSet.CameraPosition.Rear.ToString()
+                });
+            }
+            else
+            {
+                throw new InvalidOperationException("No model selected");
+            }
+        }
+
+        private void OnCameraActivation(CameraActivationStatus cameraActivationStatus)
+        {
+            if (CameraActivation != null)
+            {
+                CameraActivation(cameraActivationStatus);
+            }
+        }
+
         public void AddCallStatusChangedObserver(ICallStatusObserver observer)
         {
-            if (!_observer.Contains(observer))
-                _observer.Add(observer);
-            
+            if (!_observers.Contains(observer))
+                _observers.Add(observer);
         }
 
         public void RemoveCallStatusChangedObserver(ICallStatusObserver observer)
         {
-            if (_observer.Contains(observer))
-                _observer.Remove(observer);
+            if (_observers.Contains(observer))
+                _observers.Remove(observer);
         }
 
-        public void NotifyCallStatus(CallStatus status)
+        private void NotifyCallStatus(CallStatus status)
         {
-           foreach(var observer in _observer)
+            foreach (var observer in _observers)
             {
-                observer.CallStatusChanged(status.Status);
+                observer.CallStatusChanged(status);
             }
         }
-
     }
 }
