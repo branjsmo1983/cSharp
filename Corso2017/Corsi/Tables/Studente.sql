@@ -5,9 +5,3 @@
     [DataDiNascita] DATE NULL, 
     PRIMARY KEY CLUSTERED ([Matricola] ASC)
 );
-
-
-
-GO
-
-CREATE INDEX [IX_Studente_Cognome] ON [dbo].[Studente] ([Cognome])
