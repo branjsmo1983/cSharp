@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Aula]
+(
+	[Id] INT NOT NULL IDENTITY PRIMARY KEY, 
+    [Codice] NVARCHAR(10) NOT NULL, 
+    [Edificio] NVARCHAR(50) NULL
+)
