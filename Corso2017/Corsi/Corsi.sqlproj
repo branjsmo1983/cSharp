@@ -62,8 +62,7 @@
   <ItemGroup>
     <Build Include="Tables\Studente.sql" />
     <Build Include="Tables\Corso.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="Corsi.refactorlog" />
+    <Build Include="Tables\Aula.sql" />
+    <Build Include="Tables\Docente.sql" />
   </ItemGroup>
 </Project>
