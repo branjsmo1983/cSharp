@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HeadsetEmulator.HeadSets;
+using HeadsetEmulator.Events;  
 using HeadsetEmulator;
-using System.Diagnostics;
-using HeadsetEmulator.Events;
 
 namespace EmulatorFunctionalTest
 {

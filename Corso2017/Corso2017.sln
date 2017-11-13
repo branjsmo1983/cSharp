@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{93EA0C0E-2AD9-4E85-8ADA-A02167ADB31F}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadsetEmulator", "HeadsetEmulator\HeadsetEmulator.csproj", "{5DB4A3ED-781C-4111-AE3D-47C522923CBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmulatorFunctionalTest", "EmulatorFunctionalTest\EmulatorFunctionalTest.csproj", "{71594911-04B3-4073-86FE-E3637E847365}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Corsi", "DBcorsoIres\Corsi.sqlproj", "{8BF099E9-F214-4487-85EF-D318FD8070C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,12 @@ Global
 		{71594911-04B3-4073-86FE-E3637E847365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71594911-04B3-4073-86FE-E3637E847365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71594911-04B3-4073-86FE-E3637E847365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF099E9-F214-4487-85EF-D318FD8070C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
