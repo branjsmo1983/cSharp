@@ -60,6 +60,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dati" />
+    <Folder Include="dbo\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Iscrizione.sql" />
@@ -67,6 +68,9 @@
     <Build Include="dbo\Tables\Corso.sql" />
     <Build Include="dbo\Tables\Docente.sql" />
     <Build Include="dbo\Tables\Studente.sql" />
+    <Build Include="dbo\Views\NumeroCorsiPerStudente.sql" />
+    <Build Include="dbo\Views\NumeroAlunniPerCorso.sql" />
+    <Build Include="dbo\Views\CorsiPerStudente.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dati\data_script.sql" />
