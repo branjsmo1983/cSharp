@@ -40,7 +40,7 @@ namespace SuperLogger
                 {
                     target.WriteLog(info);
                 }
-                catch (Exception)
+                catch (Exception e)
                 { 
                     //log on error,
                     //nothing to do

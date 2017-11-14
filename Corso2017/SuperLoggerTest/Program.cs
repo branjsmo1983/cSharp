@@ -25,6 +25,9 @@ namespace SuperLoggerTest
             _logger = new Logger();
             _logger.AddLogTarget(new ConsoleLogTarget());
             _logger.AddLogTarget(new DebugLogTarget());
+            
+            _logger.AddLogTarget(new DatabaseLogTarget(
+                "Server=192.168.9.219; Database=Logger; User Id=corso; Password=corso;"));
 
             string path = Assembly.GetExecutingAssembly().Location;
             path = Path.Combine(Path.GetDirectoryName(path), "log.txt");
