@@ -1,75 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
-using static SuperLogger.LogEntry;
 
 namespace SuperLogger.Targets
 {
-    public class DataBaseLogTarget : ILogTarget
-
+    public class DatabaseLogTarget : ILogTarget
     {
+        private readonly string _connectionString;
+
+        public DatabaseLogTarget(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public void WriteLog(LogEntry info)
         {
-            using (IDbConnection conn = CreateConnection())
+            //creare connessione al db
+
+            using (var conn = new SqlConnection(_connectionString))
             {
 
-                string sql = "insert into Log (Source,Date,Message,Exception,Level) VALUES (@source, @date, @message, @exception, @level)";
+                //creare cmd
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
+                cmd.CommandText = "insert into Log (Source, Date, Level, Message, Exception) values(@Source,@Date,@Level,@Message,@Exception)";
+                //riempire parametri 
 
-                AddObject("Branz Adamo", cmd, "source");
-                AddObject(info.Date, cmd, "date");
-                AddObject(info.Message, cmd, "message");
-                AddObject(info.Level.ToString(), cmd, "level");
-                AddObject(CreateMexException(info), cmd, "exception");
+                AddParameter(cmd, "Source", "Alexis");
+                AddParameter(cmd, "Date", info.Date);
+                AddParameter(cmd, "Level", info.Level.ToString());
+                AddParameter(cmd, "Message", info.Message);
+                AddParameter(cmd, "Exception", CreateMessageForException(info));
+
+                //aprire connessione
                 conn.Open();
+                //eseguire comando
                 cmd.ExecuteNonQuery();
+                //chiudere connessione
                 conn.Close();
-
             }
 
         }
 
-        private static string CreateMexException(LogEntry info)
+        private static string CreateMessageForException(LogEntry info)
         {
-            if(info.Exception != null)
-            {
-                return info.Exception.Message;
-            }
+            if (info.Exception != null)
+                return info.Exception.Message + " - " + info.Exception.StackTrace;
             else
-            {
                 return null;
-            }
         }
 
-        private IDbConnection CreateConnection()
-        {
-            return new SqlConnection("Server=192.168.9.219;Database=Logger;User Id=corso;Password=corso;");
-        }
-
-        
-
-        private void AddObject(object inputParam, IDbCommand cmd, string paramName)
+        private static void AddParameter(SqlCommand cmd, string parameterName, object parameterValue)
         {
             var param = cmd.CreateParameter();
-            param.ParameterName = paramName;
-            if (inputParam != null)
-            {
-                param.Value = inputParam;
-            }
-            else
-            {
-                param.Value = DBNull.Value;
-            }
-            cmd.Parameters.Add(param);
+            param.ParameterName = parameterName;
+            if (parameterValue == null)
+                parameterValue = DBNull.Value;
 
+            param.Value = parameterValue;
+            cmd.Parameters.Add(param);
         }
     }
 }
-
-
-
