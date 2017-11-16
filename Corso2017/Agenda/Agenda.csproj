@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\AgendaService.cs" />
+    <Compile Include="Domain\Nationality.cs" />
     <Compile Include="Domain\Person.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
