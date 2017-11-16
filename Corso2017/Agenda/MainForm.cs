@@ -16,26 +16,25 @@ namespace Agenda
         {
             InitializeComponent();
         }
-
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
             //caricamento delle persone GetPeople()
         }
 
-
-        private void BtnNewPerson_Click(object sender, EventArgs e)
+        private void btnNewPerson_Click(object sender, EventArgs e)
         {
-            //apertura form inserimento  della persona
+            //apertura form dedicato all'inserimento/modifica della persona
         }
 
-        private void BtnChangePerson_Click(object sender, EventArgs e)
+        private void btnEditPerson_Click(object sender, EventArgs e)
         {
-            //apertura form modifica della persona
+            //apertura form dedicato all'inserimento/modifica della persona
         }
 
-        private void BtnDeletePerson_Click(object sender, EventArgs e)
+        private void btnDeletePerson_Click(object sender, EventArgs e)
         {
-            //apertura cancellazione persona
+            //cancellazione (previa conferma) della persona
         }
     }
 }

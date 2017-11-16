@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace Agenda.Domain
 {
-    class Person
+    public class Person
     {
-        public int Id { get; set; }
+        public enum Nationalities { Italian, German, Spanish, French, English }
+
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public Nationalities Nationality { get; set; }
     }
 }

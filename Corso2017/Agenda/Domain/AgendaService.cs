@@ -8,5 +8,12 @@ namespace Agenda.Domain
 {
     class AgendaService
     {
+        public List<Person> GetPeople()
+        {
+            return null;
+        }
+
+        //AddPerson..
+        //DeletePerson(...)
     }
 }
