@@ -3,7 +3,8 @@
     [Name]        NVARCHAR (50) NOT NULL,
     [Surname]     NVARCHAR (50) NOT NULL,
     [DateOfBirth] DATE          NULL,
-    [Nationality] NVARCHAR (20) NULL,
-    CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED ([ID] ASC)
+    [NationalityId] INT NOT NULL,
+    CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED ([ID] ASC), 
+    CONSTRAINT [FK_Person_Nationality] FOREIGN KEY ([NationalityId]) REFERENCES [Nationality]([Id])
 );
 
