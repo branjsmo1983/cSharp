@@ -97,7 +97,7 @@ namespace Agenda
             try
             {
                 //cancellazione (previa conferma) della persona
-                if (gvPeople.SelectedRows.Count > 1)
+                if (gvPeople.SelectedRows.Count >= 1)
                 {
                     if (MessageBox.Show($"Cancellare la/le { gvPeople.SelectedRows.Count } persona/e selezionate?", "Conferma cancellazione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -121,7 +121,7 @@ namespace Agenda
 
         private void gvPeople_SelectionChanged(object sender, EventArgs e)
         {
-            btnDeletePerson.Enabled = gvPeople.SelectedRows.Count > 1;
+            btnDeletePerson.Enabled = gvPeople.SelectedRows.Count >= 1;
             btnEditPerson.Enabled = gvPeople.SelectedRows.Count == 1;
         }
     }
