@@ -73,7 +73,7 @@ namespace Agenda
                 {
                     Id = Convert.ToInt32(txtId.Text),
                     Name = txtName.Text,
-                    Surname = txtName.Text,
+                    Surname = txtSurname.Text,
                     DateOfBirth = dtpDateOfBirth.Value,
                     Nationality = new Nationality
                     {
