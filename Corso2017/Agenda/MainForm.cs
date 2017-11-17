@@ -97,12 +97,17 @@ namespace Agenda
             try
             {
                 //cancellazione (previa conferma) della persona
-                if (gvPeople.SelectedRows.Count == 1)
+                if (gvPeople.SelectedRows.Count > 1)
                 {
-                    var item = (PersonModel)gvPeople.SelectedRows[0].DataBoundItem;
-                    if (MessageBox.Show("Cancellare la persona selezionata?", "Conferma cancellazione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show($"Cancellare la/le { gvPeople.SelectedRows.Count } persona/e selezionate?", "Conferma cancellazione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        _agenda.DeletePerson(item.Id);
+                        foreach (DataGridViewRow row in gvPeople.SelectedRows)
+                        {
+                            var item = (PersonModel)row.DataBoundItem;
+
+                            _agenda.DeletePerson(item.Id);
+                        }
+
                         LoadPeople();
                     }
                 }
@@ -116,7 +121,7 @@ namespace Agenda
 
         private void gvPeople_SelectionChanged(object sender, EventArgs e)
         {
-            btnDeletePerson.Enabled = gvPeople.SelectedRows.Count == 1;
+            btnDeletePerson.Enabled = gvPeople.SelectedRows.Count > 1;
             btnEditPerson.Enabled = gvPeople.SelectedRows.Count == 1;
         }
     }
