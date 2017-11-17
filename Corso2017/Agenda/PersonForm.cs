@@ -25,7 +25,7 @@ namespace Agenda
             InitializeComponent();
 
             _currentPersonId = personId;
-            _agenda = new AgendaService(Program.CONNECTION_STRING);
+            _agenda = new AgendaService(Program.ConnectionString);
         }
 
         private void PersonForm_Load(object sender, EventArgs e)

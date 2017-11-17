@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -8,7 +9,14 @@ namespace Agenda
 {
     static class Program
     {
-        public const string CONNECTION_STRING = "Server=192.168.9.219;Database=Agenda;User Id=corso;Password=corso;";
+        const string CONNECTIONSTRING_SETTINGS_NAME = "CorsoDb";
+        public static string ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings[CONNECTIONSTRING_SETTINGS_NAME].ConnectionString;
+            }
+        }
 
         /// <summary>
         /// The main entry point for the application.

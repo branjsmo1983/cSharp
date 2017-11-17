@@ -28,7 +28,7 @@ namespace Agenda
         {
             InitializeComponent();
 
-            _agenda = new AgendaService(Program.CONNECTION_STRING);
+            _agenda = new AgendaService(Program.ConnectionString);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
