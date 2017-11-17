@@ -40,33 +40,6 @@ namespace Agenda.Domain
             return GetList(SQL_SELECT_NATIONALITIES, NationalityMapper);
         }
 
-        #region Mappers 
-
-        private Nationality NationalityMapper(DbDataReader reader)
-        {
-            return new Nationality
-            {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1)
-            };
-        }
-
-        private Person PersonMapper(DbDataReader reader)
-        {
-            return new Person
-            {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Surname = reader.GetString(2),
-                DateOfBirth = reader.GetDateTime(3),
-                Nationality = new Nationality
-                {
-                    Id = reader.GetInt32(4),
-                    Name = reader.GetString(5)
-                }
-            };
-        }
-
         internal void SavePerson(Person person)
         {
             using (var conn = CreateConnection())
@@ -103,9 +76,36 @@ namespace Agenda.Domain
                 var rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected != 1)
                 {
-                    throw new InvalidOperationException("No records inserted");
+                    throw new InvalidOperationException("No records deleted");
                 }
             }
+        }
+
+        #region Mappers 
+
+        private Nationality NationalityMapper(DbDataReader reader)
+        {
+            return new Nationality
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1)
+            };
+        }
+
+        private Person PersonMapper(DbDataReader reader)
+        {
+            return new Person
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Surname = reader.GetString(2),
+                DateOfBirth = reader.GetDateTime(3),
+                Nationality = new Nationality
+                {
+                    Id = reader.GetInt32(4),
+                    Name = reader.GetString(5)
+                }
+            };
         }
 
         #endregion

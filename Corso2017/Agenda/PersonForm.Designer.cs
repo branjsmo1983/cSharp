@@ -50,6 +50,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(399, 20);
             this.txtName.TabIndex = 1;
+            this.txtName.TextChanged += new System.EventHandler(this.CheckMandatory);
             // 
             // label1
             // 
@@ -68,6 +69,7 @@
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(399, 20);
             this.txtSurname.TabIndex = 2;
+            this.txtSurname.TextChanged += new System.EventHandler(this.CheckMandatory);
             // 
             // label2
             // 
@@ -142,6 +144,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(255, 231);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);

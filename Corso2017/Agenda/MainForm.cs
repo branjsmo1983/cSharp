@@ -94,15 +94,23 @@ namespace Agenda
 
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
-            //cancellazione (previa conferma) della persona
-            if (gvPeople.SelectedRows.Count == 1)
+            try
             {
-                var item = (PersonModel)gvPeople.SelectedRows[0].DataBoundItem;
-                if (MessageBox.Show("Cancellare la persona selezionata?", "Conferma cancellazione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //cancellazione (previa conferma) della persona
+                if (gvPeople.SelectedRows.Count == 1)
                 {
-                    _agenda.DeletePerson(item.Id);
-                    LoadPeople();
+                    var item = (PersonModel)gvPeople.SelectedRows[0].DataBoundItem;
+                    if (MessageBox.Show("Cancellare la persona selezionata?", "Conferma cancellazione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        _agenda.DeletePerson(item.Id);
+                        LoadPeople();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                //TODO log
+                MessageBox.Show($"Si è verificato un errore durante la cancellazione.{ Environment.NewLine }{ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

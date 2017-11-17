@@ -63,6 +63,7 @@
             // 
             // btnEditPerson
             // 
+            this.btnEditPerson.Enabled = false;
             this.btnEditPerson.Location = new System.Drawing.Point(118, 12);
             this.btnEditPerson.Name = "btnEditPerson";
             this.btnEditPerson.Size = new System.Drawing.Size(99, 23);
@@ -73,6 +74,7 @@
             // 
             // btnDeletePerson
             // 
+            this.btnDeletePerson.Enabled = false;
             this.btnDeletePerson.Location = new System.Drawing.Point(223, 12);
             this.btnDeletePerson.Name = "btnDeletePerson";
             this.btnDeletePerson.Size = new System.Drawing.Size(99, 23);

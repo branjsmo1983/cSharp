@@ -30,55 +30,78 @@ namespace Agenda
 
         private void PersonForm_Load(object sender, EventArgs e)
         {
-            cboNationality.DataSource = _agenda.GetNationalities();
-
-            Person currentPerson;
-            if (_currentPersonId == null)
+            try
             {
-                currentPerson = new Person
+                cboNationality.DataSource = _agenda.GetNationalities();
+
+                Person currentPerson;
+                if (_currentPersonId == null)
                 {
-                    Id = -1,
-                    DateOfBirth = DateTime.Today
-                };
-                
-                this.Text = "Creazione nuova persona";
-            }
-            else
-            {
-                currentPerson = _agenda.GetPerson(_currentPersonId.Value);
-                this.Text = $"Modifica di {currentPerson.Name} { currentPerson.Surname }";
-            }
+                    currentPerson = new Person
+                    {
+                        Id = -1,
+                        DateOfBirth = DateTime.Today - new TimeSpan(6570, 0, 0, 0, 0) //18 anni
+                    };
 
-            txtId.Text = currentPerson.Id.ToString();
-            txtName.Text = currentPerson.Name;
-            txtSurname.Text = currentPerson.Surname;
-            dtpDateOfBirth.Value = currentPerson.DateOfBirth;
-            if (currentPerson.Nationality != null)
-                cboNationality.SelectedValue = currentPerson.Nationality.Id;
+                    this.Text = "Creazione nuova persona";
+                }
+                else
+                {
+                    currentPerson = _agenda.GetPerson(_currentPersonId.Value);
+                    this.Text = $"Modifica di {currentPerson.Name} { currentPerson.Surname }";
+                }
+
+                txtId.Text = currentPerson.Id.ToString();
+                txtName.Text = currentPerson.Name;
+                txtSurname.Text = currentPerson.Surname;
+                dtpDateOfBirth.Value = currentPerson.DateOfBirth;
+                if (currentPerson.Nationality != null)
+                    cboNationality.SelectedValue = currentPerson.Nationality.Id;
+            }
+            catch (Exception ex)
+            {
+                //TODO log
+                MessageBox.Show($"Si è verificato un errore durante il caricamento.{ Environment.NewLine }{ex.Message}");
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _agenda.SavePerson(new Person
+            try
             {
-                Id = Convert.ToInt32(txtId.Text),
-                Name = txtName.Text,
-                Surname = txtName.Text,
-                DateOfBirth = dtpDateOfBirth.Value,
-                Nationality = new Nationality
+                _agenda.SavePerson(new Person
                 {
-                    Id = (int)cboNationality.SelectedValue,
-                    Name = cboNationality.SelectedText
-                }
-            });
+                    Id = Convert.ToInt32(txtId.Text),
+                    Name = txtName.Text,
+                    Surname = txtName.Text,
+                    DateOfBirth = dtpDateOfBirth.Value,
+                    Nationality = new Nationality
+                    {
+                        Id = (int)cboNationality.SelectedValue,
+                        Name = cboNationality.Text
+                    }
+                });
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                //TODO log
+                MessageBox.Show($"Si è verificato un errore durante il salvataggio.{ Environment.NewLine }{ex.Message}");
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void CheckMandatory(object sender, EventArgs e)
+        {
+            btnSave.Enabled =
+                !string.IsNullOrWhiteSpace(txtName.Text) &&
+                !string.IsNullOrWhiteSpace(txtSurname.Text);
         }
     }
 }
