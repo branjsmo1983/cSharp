@@ -47,31 +47,38 @@
             // 
             // gvPeople
             // 
+            this.gvPeople.AllowUserToAddRows = false;
+            this.gvPeople.AllowUserToDeleteRows = false;
             this.gvPeople.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvPeople.Location = new System.Drawing.Point(13, 41);
             this.gvPeople.Name = "gvPeople";
+            this.gvPeople.ReadOnly = true;
+            this.gvPeople.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvPeople.Size = new System.Drawing.Size(497, 289);
-            this.gvPeople.TabIndex = 1;
+            this.gvPeople.TabIndex = 3;
+            this.gvPeople.SelectionChanged += new System.EventHandler(this.gvPeople_SelectionChanged);
             // 
             // btnEditPerson
             // 
+            this.btnEditPerson.Enabled = false;
             this.btnEditPerson.Location = new System.Drawing.Point(118, 12);
             this.btnEditPerson.Name = "btnEditPerson";
             this.btnEditPerson.Size = new System.Drawing.Size(99, 23);
-            this.btnEditPerson.TabIndex = 0;
+            this.btnEditPerson.TabIndex = 1;
             this.btnEditPerson.Text = "Modifica persona";
             this.btnEditPerson.UseVisualStyleBackColor = true;
             this.btnEditPerson.Click += new System.EventHandler(this.btnEditPerson_Click);
             // 
             // btnDeletePerson
             // 
+            this.btnDeletePerson.Enabled = false;
             this.btnDeletePerson.Location = new System.Drawing.Point(223, 12);
             this.btnDeletePerson.Name = "btnDeletePerson";
             this.btnDeletePerson.Size = new System.Drawing.Size(99, 23);
-            this.btnDeletePerson.TabIndex = 0;
+            this.btnDeletePerson.TabIndex = 2;
             this.btnDeletePerson.Text = "Cancella persona";
             this.btnDeletePerson.UseVisualStyleBackColor = true;
             this.btnDeletePerson.Click += new System.EventHandler(this.btnDeletePerson_Click);
@@ -86,6 +93,7 @@
             this.Controls.Add(this.btnEditPerson);
             this.Controls.Add(this.btnNewPerson);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agenda";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeople)).EndInit();
