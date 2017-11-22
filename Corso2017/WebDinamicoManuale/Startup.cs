@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
 namespace WebDinamicoManuale
@@ -18,10 +19,8 @@ namespace WebDinamicoManuale
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -37,47 +36,76 @@ namespace WebDinamicoManuale
         private string BuildResponse(string path)
         {
             var response =
-   @" <!DOCTYPE html> 
-    <html>
-        <head>
-        <metacharset='utf-8'/>
-        <title></title>
-        </head>
-        <body>";
+                @"<!DOCTYPE html>
+                <html>
+                    <head>
+                        <meta charset='utf-8' />
+                        <title></title>
+                    </head>
+                    <body>";
 
-            if(path == "/")
+            if (path == "/")
             {
-                response += @" <h1>CorsoIres2017</h1>
-                <p>
-                    <a href='/valutazioni'>ValutazioneInsegnanti</a>
-                </p>";
+                response +=
+                    @"<h1>Corso Ires 2017</h1>
+                    <p>
+                        <a href='/valutazioni'>Valutazione insegnanti</a>
+                    </p>";
             }
             else if (path == "/valutazioni")
             {
+                var teachers = GetTeacherFromDatabase();
 
+                response +=
+                    @"<h1>Valutazioni 2017:</h1>
+                        <ul>";
 
-                response += @"<h1>Valutazioni 2017</h1>
-    <ul>
-        <li><a href=' / valutazioni / daniel - maran.html'>Daniel Maran: 5 stelle</a></li>
-              <li><a href = '/valutazioni/massimiliano-kraus.html' > Massimiliano Kraus: 2 stelle </a></li>
-             
-                     <li> Giovanni Buffa: 5 stelle </li>
-                
-                    </ul> ";
+                foreach(var t in teachers)
+                {
+                    response += $"<li><a href='/valutazioni/{t.Id}'>{t.Name}: {t.Rating} stelle</a></li>";
+                }
+                            
+                response += "</ul>";
             }
             else
             {
                 throw new InvalidOperationException();
             }
-      response +=
-        @"</body>
-    </html> ";
+             
+            response +=       
+                @"</body>
+            </html>";
+
             return response;
         }
 
-        private List<Teacher> GetTeachersFromDatabase()
+        private List<Teacher> GetTeacherFromDatabase()
         {
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=Corsi;User Id=corso;Password=corso;"))
+            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
+            using (var comm = conn.CreateCommand())
+            {
+                comm.CommandType = System.Data.CommandType.Text;
+                comm.CommandText = "SELECT Id, Name, Rating FROM Insegnanti ORDER BY Name";
+
+                conn.Open();
+
+                using (var reader = comm.ExecuteReader())
+                {
+                    var teacherList = new List<Teacher>();
+
+                    while(reader.Read())
+                    {
+                        var t = new Teacher();
+                        t.Id = (int)reader["Id"];
+                        t.Name = (string)reader["Name"];
+                        t.Rating = (int)reader["Rating"];
+
+                        teacherList.Add(t);
+                    }
+
+                    return teacherList;
+                }
+            }
         }
     }
 }

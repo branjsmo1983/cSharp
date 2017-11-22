@@ -1,0 +1,52 @@
+﻿@page
+@model ValutazioniModel
+@using System.Data.SqlClient
+@functions{
+    public class Teacher
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Rating { get; set; }
+    }
+
+    List<Teacher> GetTeacherFromDatabase()
+    {
+        using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
+        using (var comm = conn.CreateCommand())
+        {
+            comm.CommandType = System.Data.CommandType.Text;
+            comm.CommandText = "SELECT Id, Name, Rating FROM Insegnanti ORDER BY Name";
+
+            conn.Open();
+
+            using (var reader = comm.ExecuteReader())
+            {
+                var teacherList = new List<Teacher>();
+
+                while (reader.Read())
+                {
+                    var t = new Teacher();
+                    t.Id = (int)reader["Id"];
+                    t.Name = (string)reader["Name"];
+                    t.Rating = (int)reader["Rating"];
+
+                    teacherList.Add(t);
+                }
+
+                return teacherList;
+            }
+        }
+    }
+}
+@{ 
+    var teachers = GetTeacherFromDatabase();
+}
+<h1>Valutazioni 2018:</h1>
+<ul>
+    @foreach(var t in teachers)
+    {
+        <li>
+            <a href="/valutazioni/@t.Id">@t.Name : t.Rating stelle</a>
+        </li>
+    }
+</ul>
