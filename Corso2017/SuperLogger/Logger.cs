@@ -52,6 +52,5 @@ namespace SuperLogger
         {
             _logTargets.Clear();
         }
-
     }
 }

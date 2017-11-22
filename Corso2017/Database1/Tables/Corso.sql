@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Corso]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)
