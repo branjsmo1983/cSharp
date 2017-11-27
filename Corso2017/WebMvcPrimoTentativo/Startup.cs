@@ -12,14 +12,11 @@ namespace WebMvcPrimoTentativo
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -28,15 +25,21 @@ namespace WebMvcPrimoTentativo
             }
 
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+
+            app.UseMvc((IRouteBuilder routes) =>
             {
+                //routes.MapRoute(
+                //    name: "specialadmin",
+                //    template: "/authentication/login/superuser/secret");
+
                 routes.MapRoute(
-                    name:"default",
-                    template:"{controller=Home}/{action=Index}/{id?}"
+                    name: "default",
+                    template: "{controller=Home}/{action=Ratings}/{id?}"
                     );
+                // req: Auth/Login   -----> AuthController.Login
             });
-            //app.UseMvc(AddRoutes);
-          
+
+            app.UseMvc(AddRoutes);
         }
 
         private void AddRoutes(IRouteBuilder routes)

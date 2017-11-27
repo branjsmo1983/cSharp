@@ -3,32 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 using WebMvcPrimoTentativo.Models;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Data.SqlClient;
 
 namespace WebMvcPrimoTentativo.Controllers
 {
-    [Route(template:"")]
     public class HomeController : Controller
     {
-        // GET: /<controller>/
-        
         public IActionResult Index()
         {
             return View();
         }
-        
+
         public IActionResult Ratings()
         {
             var models = GetTeachersFromDatabase();
+
             return View(models);
         }
 
-     
-
-        List<Teacher> GetTeachersFromDatabase()
+        private List<Teacher> GetTeachersFromDatabase()
         {
             using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
             using (var comm = conn.CreateCommand())
