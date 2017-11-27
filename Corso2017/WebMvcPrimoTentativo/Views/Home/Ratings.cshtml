@@ -1,0 +1,35 @@
+﻿@using WebMvcPrimoTentativo.Models
+@model List<Teacher>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </head>
+    <body style="width: 1000px; margin: 0 auto;">
+        <h1>Valutazioni insegnanti</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Valutazione</td>
+                    <td colspan="2"></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var teacher in Model)
+            {
+                <tr>
+                    <td>@teacher.Name</td>
+                    <td>@teacher.Rating stelle</td>
+                    <td><a href="/ratings/dettagli/@teacher.Id">dettagli</a></td>
+                    <td><a style="color: red;" href="/valutazioni/elimina/@teacher.Id">elimina</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </body>
+</html>

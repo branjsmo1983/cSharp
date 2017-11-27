@@ -51,11 +51,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D0EB0CA8-162
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatico", "WebStatico\WebStatico.csproj", "{1FF949B1-3D07-4DF9-A13A-291FE935F3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ripasso", "Ripasso\Ripasso.csproj", "{D26E0F61-8514-4E30-B21E-0BA0C1E0D6FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ripasso", "Ripasso\Ripasso.csproj", "{D26E0F61-8514-4E30-B21E-0BA0C1E0D6FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDinamicoManuale", "WebDinamicoManuale\WebDinamicoManuale.csproj", "{95C97C96-5969-42D1-8FEF-98E5B3AAF2B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDinamicoManuale", "WebDinamicoManuale\WebDinamicoManuale.csproj", "{95C97C96-5969-42D1-8FEF-98E5B3AAF2B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDinamicoRazor", "WebDinamicoRazor\WebDinamicoRazor.csproj", "{53EF770F-5040-4D45-9284-22A7CD49533E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDinamicoRazor", "WebDinamicoRazor\WebDinamicoRazor.csproj", "{53EF770F-5040-4D45-9284-22A7CD49533E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvcPrimoTentativo", "WebMvcPrimoTentativo\WebMvcPrimoTentativo.csproj", "{FAC94880-50B9-47FD-8683-69FEC38DFA6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +153,10 @@ Global
 		{53EF770F-5040-4D45-9284-22A7CD49533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53EF770F-5040-4D45-9284-22A7CD49533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53EF770F-5040-4D45-9284-22A7CD49533E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +182,7 @@ Global
 		{D26E0F61-8514-4E30-B21E-0BA0C1E0D6FF} = {42D2236C-AEDA-4779-9F1C-7FEF64915F83}
 		{95C97C96-5969-42D1-8FEF-98E5B3AAF2B0} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
 		{53EF770F-5040-4D45-9284-22A7CD49533E} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
+		{FAC94880-50B9-47FD-8683-69FEC38DFA6F} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30ECAB26-7E69-4CE6-BD13-B0B113B94141}
