@@ -1,0 +1,23 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using WebMvcPrimoTentativo.Models
+@model Teacher
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body style="width: 1000px; margin: 0 auto;">
+    <h1>Valutazione insegnante</h1>
+    <form method="post">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" />
+        <label asp-for="Rating"></label>
+        <input type="number" asp-for="Rating" />
+        <input type="submit" value="Salva" />
+    </form>
+</body>
+</html>

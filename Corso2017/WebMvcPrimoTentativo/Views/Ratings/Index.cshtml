@@ -1,4 +1,5 @@
-﻿@using WebMvcPrimoTentativo.Models
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using WebMvcPrimoTentativo.Models
 @model List<Teacher>
 
 <!DOCTYPE html>
@@ -25,8 +26,8 @@
                 <tr>
                     <td>@teacher.Name</td>
                     <td>@teacher.Rating stelle</td>
-                    <td><a href="/ratings/dettagli/@teacher.Id">dettagli</a></td>
-                    <td><a style="color: red;" href="/valutazioni/elimina/@teacher.Id">elimina</a></td>
+                    <td><a class="btn btn-primary" asp-controller="Ratings" asp-action="Details" asp-route-id="@teacher.Id">dettagli</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Ratings" asp-action="Delete" asp-route-id="@teacher.Id">elimina</a></td>
                 </tr>
             }
             </tbody>
