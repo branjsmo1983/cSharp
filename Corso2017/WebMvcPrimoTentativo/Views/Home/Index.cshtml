@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
 <html>
     <head></head>
     <body>
         <h1>Corso Ires 2017</h1>
-        <p><a href="/valutazioni">Valutazioni insegnanti</a></p>
+        <p><a asp-controller="Ratings" asp-action="Index">Valutazioni insegnanti</a></p>
     </body>
 </html>
 
