@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebMvcPrimoTentativo.Models;
-using System.Data.SqlClient;
 using WebMvcPrimoTentativo.DataAccess;
 
 namespace WebMvcPrimoTentativo.Controllers
@@ -11,14 +9,14 @@ namespace WebMvcPrimoTentativo.Controllers
     {
         private IRepository<Teacher> _rep;
 
-        public RatingsController(IRepository<Teacher> repository) //la istanzio in startup con AddSingleton
+        public RatingsController(IRepository<Teacher> repository)
         {
             _rep = repository;
         }
 
         public ViewResult Index()
         {
-            var models = _rep.GetListFromDatabase();  
+            var models = _rep.GetListFromDatabase();
 
             return View(models);
         }
@@ -39,7 +37,7 @@ namespace WebMvcPrimoTentativo.Controllers
 
             return View(model);
 
-            #region Esempio di codice meno buono //serve per collassare codice commentato
+            #region Esempio di codice meno buono
             // con il codice qui sotto scriverei meno codice ma duplico certe logiche
             // --> meno opportuno
 
@@ -68,8 +66,8 @@ namespace WebMvcPrimoTentativo.Controllers
 
             if (!ModelState.IsValid)
                 return View(teacher);
+
             _rep.UpdateInDatabase(teacher);
-            
 
             return RedirectToAction(nameof(Index));
         }
@@ -81,7 +79,5 @@ namespace WebMvcPrimoTentativo.Controllers
 
             return RedirectToAction("Index");
         }
-
-     
     }
 }

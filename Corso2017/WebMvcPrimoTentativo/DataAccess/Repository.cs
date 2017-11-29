@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 using WebMvcPrimoTentativo.Models;
 
 namespace WebMvcPrimoTentativo.DataAccess
@@ -11,9 +10,11 @@ namespace WebMvcPrimoTentativo.DataAccess
     {
         public void DeleteFromDatabase(int id)
         {
+            //dovrei usare i parameters per questioni di sicurezza!
+
             var query =
-               $"DELETE FROM Insegnanti " +
-               $"WHERE Id = {id};";
+                $"DELETE FROM Insegnanti " +
+                $"WHERE Id = {id};";
 
             using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
             using (var comm = conn.CreateCommand())
@@ -63,8 +64,10 @@ namespace WebMvcPrimoTentativo.DataAccess
             using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
             using (var comm = conn.CreateCommand())
             {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = $"SELECT Id, Name, Rating FROM Insegnanti WHERE Id = {id}";
+                comm.CommandType = CommandType.Text;
+
+                //dovrei usare i parameters per questioni di sicurezza!
+                comm.CommandText = $"SELECT Id, Name, Rating FROM Insegnanti WHERE Id = {id};";
 
                 conn.Open();
 
@@ -84,10 +87,14 @@ namespace WebMvcPrimoTentativo.DataAccess
                 }
             }
         }
-    
 
         public void UpdateInDatabase(Teacher model)
         {
+            // Nelle query successive
+            // dovrei usare i parameters per questioni di sicurezza!
+            // Qui le costruisco a mano
+            // e verifico come effettuare un attacco di SQL Injection!
+
             string query;
 
             if (model.Id == 0)
@@ -120,5 +127,4 @@ namespace WebMvcPrimoTentativo.DataAccess
             }
         }
     }
-    }
-
+}
