@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebMvcPrimoTentativo.Models;
 using System.Data.SqlClient;
+using WebMvcPrimoTentativo.DataAccess;
 
 namespace WebMvcPrimoTentativo.Controllers
 {
     public class RatingsController : Controller
     {
+        private IRepository<Teacher> _rep;
+
+        public RatingsController(IRepository<Teacher> repository) //la istanzio in startup con AddSingleton
+        {
+            _rep = repository;
+        }
+
         public ViewResult Index()
         {
-            var models = GetTeachersFromDatabase();
+            var models = _rep.GetListFromDatabase();  
 
             return View(models);
         }
@@ -28,12 +34,12 @@ namespace WebMvcPrimoTentativo.Controllers
             }
             else
             {
-                model = GetTeacherFromDatabase(id);
+                model = _rep.GetSingleFromDatabase(id);
             }
 
             return View(model);
 
-            #region Esempio di codice meno buono
+            #region Esempio di codice meno buono //serve per collassare codice commentato
             // con il codice qui sotto scriverei meno codice ma duplico certe logiche
             // --> meno opportuno
 
@@ -62,8 +68,8 @@ namespace WebMvcPrimoTentativo.Controllers
 
             if (!ModelState.IsValid)
                 return View(teacher);
-
-            UpdateTeacherInDatabase(teacher);
+            _rep.UpdateInDatabase(teacher);
+            
 
             return RedirectToAction(nameof(Index));
         }
@@ -71,126 +77,11 @@ namespace WebMvcPrimoTentativo.Controllers
         [HttpPost]
         public RedirectToActionResult Delete(int id)
         {
-            DeleteTeacherFromDatabase(id);
+            _rep.DeleteFromDatabase(id);
 
             return RedirectToAction("Index");
         }
 
-        private List<Teacher> GetTeachersFromDatabase()
-        {
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
-            using (var comm = conn.CreateCommand())
-            {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = "SELECT Id, Name, Rating FROM Insegnanti ORDER BY Name";
-
-                conn.Open();
-
-                using (var reader = comm.ExecuteReader())
-                {
-                    var teacherList = new List<Teacher>();
-
-                    while (reader.Read())
-                    {
-                        var t = new Teacher();
-                        t.Id = (int)reader["Id"];
-                        t.Name = (string)reader["Name"];
-                        t.Rating = (int)reader["Rating"];
-
-                        teacherList.Add(t);
-                    }
-
-                    return teacherList;
-                }
-            }
-        }
-
-        private Teacher GetTeacherFromDatabase(int id)
-        {
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
-            using (var comm = conn.CreateCommand())
-            {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = $"SELECT Id, Name, Rating FROM Insegnanti WHERE Id = {id}";
-
-                conn.Open();
-
-                using (var reader = comm.ExecuteReader())
-                {
-                    var hasResult = reader.Read();
-
-                    if (!hasResult)
-                        throw new InvalidOperationException("Insegnante non trovato!");
-
-                    var t = new Teacher();
-                    t.Id = (int)reader["Id"];
-                    t.Name = (string)reader["Name"];
-                    t.Rating = (int)reader["Rating"];
-
-                    return t;
-                }
-            }
-        }
-
-        private void DeleteTeacherFromDatabase(int id)
-        {
-            //dovrei usare i parameters per questioni di sicurezza!
-
-            var query =
-                $"DELETE FROM Insegnanti " +
-                $"WHERE Id = {id};";
-
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
-            using (var comm = conn.CreateCommand())
-            {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = query;
-
-                conn.Open();
-
-                var result = comm.ExecuteNonQuery();
-
-                //check result
-            }
-        }
-
-        private void UpdateTeacherInDatabase(Teacher teacher)
-        {
-            // Nelle query successive
-            // dovrei usare i parameters per questioni di sicurezza!
-            // Qui le costruisco a mano
-            // e verifico come effettuare un attacco di SQL Injection!
-
-            string query;
-
-            if (teacher.Id == 0)
-            {
-                query = $"INSERT INTO Insegnanti "
-                    + $"(Name, Rating) "
-                    + $"VALUES "
-                    + $"('{teacher.Name}', {teacher.Rating});";
-            }
-            else
-            {
-                query =
-                    $"UPDATE Insegnanti " +
-                    $"SET Name = '{teacher.Name}'," +
-                        $"Rating = {teacher.Rating} " +
-                    $"WHERE Id = {teacher.Id};";
-            }
-
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
-            using (var comm = conn.CreateCommand())
-            {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = query;
-
-                conn.Open();
-
-                var result = comm.ExecuteNonQuery();
-
-                //check result
-            }
-        }
+     
     }
 }

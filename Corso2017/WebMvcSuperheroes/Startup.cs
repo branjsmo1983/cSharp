@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebMvcPrimoTentativo.DataAccess;
+using WebMvcPrimoTentativo.Models;
 
 namespace WebMvcSuperheroes
 {
@@ -21,6 +23,8 @@ namespace WebMvcSuperheroes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IRepository<Teacher>>(new Repository()); //una sola istanza per tutto il progetto
+            // service.AddSingleton<IRepository<Teacher>,Repository>();
             services.AddMvc();
         }
 
