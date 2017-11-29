@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using WebMvcPrimoTentativo.Models;
-using System.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcPrimoTentativo.Controllers
 {
@@ -14,9 +8,5 @@ namespace WebMvcPrimoTentativo.Controllers
         {
             return View();
         }
-
-
-
-       
     }
 }
