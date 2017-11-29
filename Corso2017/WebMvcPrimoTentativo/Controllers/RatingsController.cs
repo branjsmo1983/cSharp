@@ -20,19 +20,65 @@ namespace WebMvcPrimoTentativo.Controllers
         [HttpGet]
         public ViewResult Details(int id)
         {
-            var model = GetTeacherFromDatabase(id);
+            Teacher model;
+
+            if (id == 0)
+            {
+                model = new Teacher();
+            }
+            else
+            {
+                model = GetTeacherFromDatabase(id);
+            }
 
             return View(model);
+
+            #region Esempio di codice meno buono
+            // con il codice qui sotto scriverei meno codice ma duplico certe logiche
+            // --> meno opportuno
+
+            //if (id == 0)
+            //{
+            //    return View(new Teacher());
+            //}
+            //else
+            //{
+            //    return View(GetTeacherFromDatabase(id));
+            //}
+            #endregion
+        }
+
+        [HttpGet]
+        public ViewResult New()
+        {
+            return View(nameof(Details), new Teacher() { Rating = 1 });
         }
 
         [HttpPost]
         public RedirectToActionResult Details(Teacher teacher)
         {
-            var query =
-                $"UPDATE Insegnanti " +
-                $"SET Name = '{teacher.Name}'," +
-                    $"Rating = {teacher.Rating} " +
-                $"WHERE Id = {teacher.Id};";
+            if (teacher == null)
+                throw new ArgumentNullException(nameof(teacher));
+
+            //dovrei usare i parameters per questioni di sicurezza!
+
+            string query;
+
+            if (teacher.Id == 0)
+            {
+                query = $"INSERT INTO Insegnanti "
+                    + $"(Name, Rating) "
+                    + $"VALUES "
+                    + $"('{teacher.Name}', {teacher.Rating});";
+            }
+            else
+            {
+                query =
+                    $"UPDATE Insegnanti " +
+                    $"SET Name = '{teacher.Name}'," +
+                        $"Rating = {teacher.Rating} " +
+                    $"WHERE Id = {teacher.Id};";
+            }
 
             using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
             using (var comm = conn.CreateCommand())
@@ -47,8 +93,16 @@ namespace WebMvcPrimoTentativo.Controllers
                 //check result
 
                 //return View(teacher);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(RatingsController.Index));
             }
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Delete(int id)
+        {
+            DeleteTeacherFromDatabase(id);
+
+            return RedirectToAction("Index");
         }
 
         private List<Teacher> GetTeachersFromDatabase()
@@ -104,6 +158,28 @@ namespace WebMvcPrimoTentativo.Controllers
 
                     return t;
                 }
+            }
+        }
+
+        private void DeleteTeacherFromDatabase(int id)
+        {
+            //dovrei usare i parameters per questioni di sicurezza!
+
+            var query =
+                $"DELETE FROM Insegnanti " +
+                $"WHERE Id = {id};";
+
+            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
+            using (var comm = conn.CreateCommand())
+            {
+                comm.CommandType = System.Data.CommandType.Text;
+                comm.CommandText = query;
+
+                conn.Open();
+
+                var result = comm.ExecuteNonQuery();
+
+                //check result
             }
         }
     }
