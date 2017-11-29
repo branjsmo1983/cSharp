@@ -55,10 +55,13 @@ namespace WebMvcPrimoTentativo.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Details(Teacher teacher)
+        public IActionResult Details(Teacher teacher)
         {
             if (teacher == null)
                 throw new ArgumentNullException(nameof(teacher));
+
+            if (!ModelState.IsValid)
+                return View(teacher);
 
             //dovrei usare i parameters per questioni di sicurezza!
 

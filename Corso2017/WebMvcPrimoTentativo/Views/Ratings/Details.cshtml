@@ -12,7 +12,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
+    <link rel="stylesheet" href="~/css/styles.css" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
@@ -23,11 +23,17 @@
           asp-controller="Ratings"
           asp-action="Details"
           class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input type="text" asp-for="Name" class="form-control" />
-        <label asp-for="Rating" class="control-label"></label>
-        <input type="number" asp-for="Rating" class="form-control" />
-        <input type="submit" value="Salva" />
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="field-validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rating" class="control-label"></label>
+            <input type="number" asp-for="Rating" class="form-control" />
+            <span asp-validation-for="Rating"></span>
+        </div>
+        <div class><input type="submit" value="Salva" class="btn btn-warning" /></div>
     </form>
 </body>
 </html>
