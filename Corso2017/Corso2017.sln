@@ -57,7 +57,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDinamicoManuale", "WebDi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDinamicoRazor", "WebDinamicoRazor\WebDinamicoRazor.csproj", "{53EF770F-5040-4D45-9284-22A7CD49533E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvcPrimoTentativo", "WebMvcPrimoTentativo\WebMvcPrimoTentativo.csproj", "{FAC94880-50B9-47FD-8683-69FEC38DFA6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMvcPrimoTentativo", "WebMvcPrimoTentativo\WebMvcPrimoTentativo.csproj", "{FAC94880-50B9-47FD-8683-69FEC38DFA6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvcSuperheroes", "WebMvcSuperheroes\WebMvcSuperheroes.csproj", "{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,6 +159,10 @@ Global
 		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAC94880-50B9-47FD-8683-69FEC38DFA6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +189,7 @@ Global
 		{95C97C96-5969-42D1-8FEF-98E5B3AAF2B0} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
 		{53EF770F-5040-4D45-9284-22A7CD49533E} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
 		{FAC94880-50B9-47FD-8683-69FEC38DFA6F} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
+		{CCDAABC7-3E18-4A78-9EFD-ACA59B7017A7} = {D0EB0CA8-162F-4AC8-950C-168626D69AE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30ECAB26-7E69-4CE6-BD13-B0B113B94141}

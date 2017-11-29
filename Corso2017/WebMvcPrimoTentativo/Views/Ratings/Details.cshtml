@@ -12,9 +12,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 <body style="width: 500px; margin: 0 auto;">
     <h1>@title</h1>
@@ -23,11 +21,26 @@
           asp-controller="Ratings"
           asp-action="Details"
           class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input type="text" asp-for="Name" class="form-control" />
-        <label asp-for="Rating" class="control-label"></label>
-        <input type="number" asp-for="Rating" class="form-control" />
-        <input type="submit" value="Salva" />
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Rating" class="control-label"></label>
+            <input type="number" asp-for="Rating" class="form-control" />
+            <span asp-validation-for="Rating"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Salva" />
+        </div>
     </form>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
