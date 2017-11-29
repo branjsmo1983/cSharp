@@ -2,6 +2,12 @@
 @using WebMvcPrimoTentativo.Models
 @model Teacher
 
+@{ 
+    var title = Model.Id == 0
+        ? "Aggiungi valutazione"
+        : "Modifica valutazione";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +16,17 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
-<body style="width: 1000px; margin: 0 auto;">
-    <h1>Valutazione insegnante</h1>
-    <form method="post">
-        <label asp-for="Name"></label>
-        <input type="text" asp-for="Name" />
-        <label asp-for="Rating"></label>
-        <input type="number" asp-for="Rating" />
+<body style="width: 500px; margin: 0 auto;">
+    <h1>@title</h1>
+    <h1>@(Model.Id == 0 ? "Aggiungi valutazione" : "Modifica valutazione")</h1>
+    <form method="post"
+          asp-controller="Ratings"
+          asp-action="Details"
+          class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <label asp-for="Rating" class="control-label"></label>
+        <input type="number" asp-for="Rating" class="form-control" />
         <input type="submit" value="Salva" />
     </form>
 </body>
