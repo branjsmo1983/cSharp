@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Routing;
+using WebMvcPrimoTentativo.DataAccess;
+using WebMvcPrimoTentativo.Models;
+using System.Collections;
 
 namespace WebMvcPrimoTentativo
 {
@@ -15,6 +18,8 @@ namespace WebMvcPrimoTentativo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IRepository<Teacher>, Repository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
