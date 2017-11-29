@@ -1,5 +1,3 @@
-﻿
-    .field-validation-error{
-        color: darkred;
-    }
-
+﻿.field-validation-error {
+    color: red;
+}

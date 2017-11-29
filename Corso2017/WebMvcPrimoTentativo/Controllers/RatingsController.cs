@@ -63,41 +63,9 @@ namespace WebMvcPrimoTentativo.Controllers
             if (!ModelState.IsValid)
                 return View(teacher);
 
-            //dovrei usare i parameters per questioni di sicurezza!
+            UpdateTeacherInDatabase(teacher);
 
-            string query;
-
-            if (teacher.Id == 0)
-            {
-                query = $"INSERT INTO Insegnanti "
-                    + $"(Name, Rating) "
-                    + $"VALUES "
-                    + $"('{teacher.Name}', {teacher.Rating});";
-            }
-            else
-            {
-                query =
-                    $"UPDATE Insegnanti " +
-                    $"SET Name = '{teacher.Name}'," +
-                        $"Rating = {teacher.Rating} " +
-                    $"WHERE Id = {teacher.Id};";
-            }
-
-            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
-            using (var comm = conn.CreateCommand())
-            {
-                comm.CommandType = System.Data.CommandType.Text;
-                comm.CommandText = query;
-
-                conn.Open();
-
-                var result = comm.ExecuteNonQuery();
-
-                //check result
-
-                //return View(teacher);
-                return RedirectToAction(nameof(RatingsController.Index));
-            }
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
@@ -171,6 +139,45 @@ namespace WebMvcPrimoTentativo.Controllers
             var query =
                 $"DELETE FROM Insegnanti " +
                 $"WHERE Id = {id};";
+
+            using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
+            using (var comm = conn.CreateCommand())
+            {
+                comm.CommandType = System.Data.CommandType.Text;
+                comm.CommandText = query;
+
+                conn.Open();
+
+                var result = comm.ExecuteNonQuery();
+
+                //check result
+            }
+        }
+
+        private void UpdateTeacherInDatabase(Teacher teacher)
+        {
+            // Nelle query successive
+            // dovrei usare i parameters per questioni di sicurezza!
+            // Qui le costruisco a mano
+            // e verifico come effettuare un attacco di SQL Injection!
+
+            string query;
+
+            if (teacher.Id == 0)
+            {
+                query = $"INSERT INTO Insegnanti "
+                    + $"(Name, Rating) "
+                    + $"VALUES "
+                    + $"('{teacher.Name}', {teacher.Rating});";
+            }
+            else
+            {
+                query =
+                    $"UPDATE Insegnanti " +
+                    $"SET Name = '{teacher.Name}'," +
+                        $"Rating = {teacher.Rating} " +
+                    $"WHERE Id = {teacher.Id};";
+            }
 
             using (var conn = new SqlConnection("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;"))
             using (var comm = conn.CreateCommand())

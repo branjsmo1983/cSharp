@@ -9,12 +9,14 @@ namespace WebMvcPrimoTentativo.Models
     public class Teacher
     {
         public int Id { get; set; }
+
         [Required]
-        [RegularExpression(@"^([\w^])+$")]
-        [MinLength(3,ErrorMessage = "Nome minimo di 3 caratteri")]
-        [MaxLength(20)]
+        [RegularExpression(@"^([\w ])+$")]
+        [MinLength(3)]
+        [MaxLength(32)]
         public string Name { get; set; }
-        [Range(1,5,ErrorMessage = "devi scegliere un numero tra 1 e 5")]
+
+        [Range(1, 5)]
         public int Rating { get; set; }
     }
 }
