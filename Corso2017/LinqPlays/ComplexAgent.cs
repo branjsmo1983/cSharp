@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace LinqPlays
 {
-    class Program
+    public static class ComplexAgent
     {
-        static void Main()
+        public static void Play()
         {
-            //Base.Play();
-            SimpleAgent.Play();
-            Console.Read();
+
         }
     }
 }
