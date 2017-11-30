@@ -1,0 +1,47 @@
+﻿@model List<Villain>
+
+@{
+    ViewData["Title"] = "Villain list";
+}
+
+<h1>Villain List</h1>
+
+<p>@TempData["message"]</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Nemesis</td>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var v in Model)
+    {
+        <tr>
+            <td>@v.Name</td>
+            <td>@v.Nemesis?.HeroName</td>
+            <td>
+                <a class="btn btn-primary"
+                   asp-controller="Villain"
+                   asp-action="Edit"
+                   asp-route-id="@v.Id">Details</a>
+            </td>
+            <td>
+                <a class="btn btn-danger"
+                   asp-controller="Villain"
+                   asp-action="Delete"
+                   asp-route-id="@v.Id">Delete</a>
+            </td>
+        </tr>
+    }
+        <tr>
+            <td colspan="5">
+                <a class="btn btn-primary"
+                   asp-controller="Villain"
+                   asp-action="Edit">Add Villain</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
