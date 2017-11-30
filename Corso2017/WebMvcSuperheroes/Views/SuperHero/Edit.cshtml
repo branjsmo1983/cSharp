@@ -1,0 +1,40 @@
+﻿@model SuperHero
+
+<h1>Our hero</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label class="control-label" asp-for="HeroName"></label>
+        <input class="form-control" asp-for="HeroName" />
+        <span asp-validation-for="HeroName"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="SecretName"></label>
+        <input class="form-control" asp-for="SecretName" />
+        <span asp-validation-for="SecretName"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="City"></label>
+        <input class="form-control" asp-for="City" />
+        <span asp-validation-for="City"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Power"></label>
+        <input class="form-control" asp-for="Power" type="number" />
+        <span asp-validation-for="Power"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="CanFly"></label>
+        <input class="form-control" asp-for="CanFly" type="checkbox" />
+        <span asp-validation-for="CanFly"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Birth"></label>
+        <input class="form-control" asp-for="Birth" type="date" />
+        <span asp-validation-for="Birth"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Save" />
+    </div>
+</form>
