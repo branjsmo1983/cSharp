@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WebMvcPrimoTentativo.Models;
 
@@ -40,11 +41,25 @@ namespace WebMvcPrimoTentativo.DataAccess
 
             //return list;
 
+            //Expression<Func<Teacher, bool>> expr = x => x.Rating > 2;
+            //Func<Teacher, bool> func = x => x.Rating > 2;
+
+            ////questo non compila perché C# non converte
+            ////qualsiasi metodo/delegate in Expression, ma solo le lambda
+            //Expression<Func<Teacher, bool>> exprm = M;
+            //Func<Teacher, bool> funcm = M;
+
             var list = _context.Teachers
                 .Where(x => x.Rating > 2)
+                //.Where(M) //avrebbe caricato tutti i Teacher dal database!
                 .ToList();
 
             return list;
+        }
+
+        private bool M(Teacher t)
+        {
+            return t.Rating > 2;
         }
 
         public Teacher GetSingleFromDatabase(int id)
