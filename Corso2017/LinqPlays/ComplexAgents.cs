@@ -12,16 +12,30 @@ namespace LinqPlays
         {
             var agents = ComplexAgent.Create();
 
-            Console.WriteLine("Total income for every agent:");
+            Console.WriteLine("Guadagno totale per ogni agente:");
 
             var agentsWithTotal = agents
                 .Select(a => new
-                {
-                    Name = a.Name,
-                    TotalIncome = a.Operations.Sum(o => o.Income)
-                });
+                    {
+                        Name = a.Name,
+                        TotalIncome = a.Operations.Sum(o => o.Income)
+                    });
 
             foreach(var i in agentsWithTotal)
+                Console.WriteLine($"L'agente {i.Name} ha totalizzato {i.TotalIncome} €");
+
+            Console.WriteLine("Guadagno di oggi per ogni agente:");
+
+            var agentsWithTotalToday = agents
+                .Select(a => new
+                    {
+                        Name = a.Name,
+                        TotalIncome = a.Operations
+                            .Where(o => o.Date.Year == 2017 && o.Date.Month == 11 && o.Date.Day == 30)
+                            .Sum(o => o.Income)
+                    });
+
+            foreach (var i in agentsWithTotalToday)
                 Console.WriteLine($"L'agente {i.Name} ha totalizzato {i.TotalIncome} €");
         }
     }
@@ -43,7 +57,7 @@ namespace LinqPlays
                     Operation.Create(2017, 11, 29, 2000),
                 }),
                 Create("Matthew Core", "UD", new List<Operation>()),
-                Create("Mark Zuck", "PD", new List<Operation>
+                Create("Mark Zuck", "PN", new List<Operation>
                 {
                     Operation.Create(2017, 11, 28, 7000),
                     Operation.Create(2017, 11, 29, 9000),
@@ -55,6 +69,7 @@ namespace LinqPlays
                     Operation.Create(2017, 11, 28, 2000),
                     Operation.Create(2017, 11, 29, 2000),
                     Operation.Create(2017, 11, 30, 2000),
+                    Operation.Create(2017, 11, 30, 3000),
                 })
             };
         }
