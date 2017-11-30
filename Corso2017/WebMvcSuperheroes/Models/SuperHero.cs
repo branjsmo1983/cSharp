@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace WebMvcSuperheroes.Models
 
         [Required]
         [MaxLength(50)]
+        [DisplayName("Hero Name")]
         public string HeroName { get; set; }
 
         [MaxLength(50)]
