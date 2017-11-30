@@ -19,17 +19,21 @@ namespace WebMvcSuperheroes.Controllers
 
         public ViewResult Index()
         {
+           
+            var models = _context.SuperHeroes.ToList();
             return View();
         }
 
         public ViewResult Edit(int id)
         {
             SuperHero model;
-
+           
             if (id == 0)
                 model = new SuperHero();
             else
                 model = _context.SuperHeroes.Single(x => x.Id == id);
+
+           
 
             return View(model);
         }
@@ -37,12 +41,17 @@ namespace WebMvcSuperheroes.Controllers
         [HttpPost]
         public IActionResult Edit(SuperHero model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             if (model.Id == 0)
                 _context.SuperHeroes.Add(model);
             else
                 _context.SuperHeroes.Update(model);
 
             _context.SaveChanges();
+           
 
             return RedirectToAction(nameof(Index));
         }
