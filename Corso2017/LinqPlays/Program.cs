@@ -14,7 +14,9 @@ namespace LinqPlays
 
             //SimpleAgents.Play();
 
-            ComplexAgents.Play();
+            //ComplexAgents.Play();
+
+            DeferredExecution.Play();
 
             Console.Read();
         }

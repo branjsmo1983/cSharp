@@ -8,19 +8,40 @@ namespace WebMvcPrimoTentativo.DataAccess
 {
     public class EfRepository : IRepository<Teacher>
     {
+        private AppDbContext _context;
 
+        public EfRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public void DeleteFromDatabase(int id)
         {
-            throw new NotImplementedException();
+            var teacher = GetSingleFromDatabase(id);
+
+            _context.Teachers.Remove(teacher);
+
+            _context.SaveChanges();
         }
 
         public List<Teacher> GetListFromDatabase()
         {
-            var dbctx = new AppDbContext();
+            //facendo così carico prima tutti le righe dal database.
+            //Sbagliato perché:
+            // 1) più traffico di rete, perché carico tutto dal database
+            // 2) più occupazione di RAM (devo creare un'istanza del model per ogni riga
+            // 3) più occupazione di CPU perché i filtri sono fatti su l'intera collezione
 
-            var list = dbctx.Teachers
-                .Where(t => t.Rating > 3)
+            //var teachers = _context.Teachers.ToList();
+
+            //var list = teachers
+            //    .Where(t => t.Rating > 3)
+            //    .ToList();
+
+            //return list;
+
+            var list = _context.Teachers
+                .Where(x => x.Rating > 2)
                 .ToList();
 
             return list;
@@ -28,12 +49,37 @@ namespace WebMvcPrimoTentativo.DataAccess
 
         public Teacher GetSingleFromDatabase(int id)
         {
-            throw new NotImplementedException();
+            // meno bene: così cerco su tutta la lista,
+            // invece di fermarmi alla prima occorrenza
+            //var teacher = _context.Teachers
+            //    .Where(x => x.Id == id)
+            //    .First();
+
+            // mi fermo alla prima occorrenza e la restituisco
+            // senza andare avanti inutilmente nella lista
+            //var teacher = _context.Teachers
+            //   .First(x => x.Id == id);
+
+            // cerco su tutta la lista
+            // lancio errore se non trovo corrispondenze o ne trovo più di una
+            var teacher = _context.Teachers
+                .Single(x => x.Id == id);
+
+            return teacher;
         }
 
         public void UpdateInDatabase(Teacher model)
         {
-            throw new NotImplementedException();
+            if (model.Id == 0)
+            {
+                _context.Teachers.Add(model);
+            }
+            else
+            {
+                _context.Teachers.Update(model);
+            }
+
+            _context.SaveChanges();
         }
     }
 }
