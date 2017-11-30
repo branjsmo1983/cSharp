@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Routing;
 using WebMvcPrimoTentativo.DataAccess;
 using WebMvcPrimoTentativo.Models;
 using System.Collections;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebMvcPrimoTentativo
 {
@@ -19,7 +20,12 @@ namespace WebMvcPrimoTentativo
         {
             services.AddMvc();
 
-            services.AddSingleton<IRepository<Teacher>, Repository>();
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer("Server=192.168.9.219;Database=ValutazioneCorsi;User Id=corso;Password=corso;");
+            });            
+
+            services.AddScoped<IRepository<Teacher>, EfRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

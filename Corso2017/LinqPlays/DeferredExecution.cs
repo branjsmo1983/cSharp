@@ -6,18 +6,29 @@ using System.Threading.Tasks;
 
 namespace LinqPlays
 {
-    public static class DeferredExecution
+    static class DeferredExecution
     {
         public static void Play()
         {
-            var list = new List<int> { 1, 2, 3, 4, 5 };
+            var list = new List<int> { 1, 2, 3, 4 };
 
             var oddNumbers = list.Where(x => x % 2 != 0);
 
-            foreach(var dispari in oddNumbers)
-            {
-                Console.WriteLine(dispari);
-            }
+            list.Add(5);
+
+            foreach(var on in oddNumbers)
+                Console.WriteLine(on);
+
+            Console.WriteLine();
+
+            list.Add(7);
+
+            foreach (var on in oddNumbers)
+                Console.WriteLine(on);
+
+            var single = list
+                .Where(x => x % 2 == 0)
+                .Single(x => x < 3);
         }
     }
 }
