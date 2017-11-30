@@ -23,7 +23,7 @@ namespace WebMvcPrimoTentativo.DataAccess
                 .Where(t => t.Rating > 3)
                 .ToList();
 
-            throw new NotImplementedException();
+            return list;
         }
 
         public Teacher GetSingleFromDatabase(int id)
