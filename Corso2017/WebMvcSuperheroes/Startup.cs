@@ -24,6 +24,7 @@ namespace WebMvcSuperheroes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IRepository<Teacher>>(new Repository()); //una sola istanza per tutto il progetto
+       
             // service.AddSingleton<IRepository<Teacher>,Repository>();
             services.AddMvc();
         }
