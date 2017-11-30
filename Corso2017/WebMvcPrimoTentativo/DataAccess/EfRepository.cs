@@ -8,6 +8,8 @@ namespace WebMvcPrimoTentativo.DataAccess
 {
     public class EfRepository : IRepository<Teacher>
     {
+
+
         public void DeleteFromDatabase(int id)
         {
             throw new NotImplementedException();
@@ -15,6 +17,12 @@ namespace WebMvcPrimoTentativo.DataAccess
 
         public List<Teacher> GetListFromDatabase()
         {
+            var dbctx = new AppDbContext();
+
+            var list = dbctx.Teachers
+                .Where(t => t.Rating > 3)
+                .ToList();
+
             throw new NotImplementedException();
         }
 

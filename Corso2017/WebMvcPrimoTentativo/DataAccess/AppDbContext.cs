@@ -9,6 +9,6 @@ namespace WebMvcPrimoTentativo.DataAccess
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Teacher> Teacher { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }

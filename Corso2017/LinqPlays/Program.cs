@@ -11,63 +11,113 @@ namespace LinqPlays
         static void Main(string[] args)
         {
             var studentList = Student.CreateList();
+
+            Console.WriteLine("Lista dei nomi degli studenti recuperata a mano:");
+
             var nameList = GetNamesByHand(studentList);
-            Console.WriteLine("Lista dei nomi degli studenti");
+
             foreach (var n in nameList)
-            {
-                Console.WriteLine($"nome dello studente : { n}");
-                
-            }
+                Console.WriteLine(n);
+
             Console.WriteLine();
-            var howMuch = GethowStudentsByHand(studentList);
-                Console.WriteLine($"il numero degli studenti passati : { howMuch } ");
-            var nameListLinq = studentList.Select(x => x.Name);
-            foreach(var v in nameListLinq)
-            {
-                Console.WriteLine(v);
-            }
 
-            var passLinq = studentList.Count(student => student.Passed);
-            Console.WriteLine($"sono passati : {passLinq}");
+            var howManyPassedTheExam = GetHowManyPassedByHand(studentList);
 
-            var passListLinq = studentList.Where(x => x.Passed == true).Select(y => y.Name);
+            Console.Write($"Sono passati: {howManyPassedTheExam} studenti.");
 
-            var evenTo100 = Enumerable.Range(1, 100).Where(integer => integer % 2 == 0);
+            Console.WriteLine();
 
-           
+            var nameListWithLinq = studentList.Select(x => x.Name);
 
-        }
+            foreach (var n in nameListWithLinq)
+                Console.WriteLine(n);
 
-        public class Square
-        {
-            public int Number { get; set; }
-            public int SquareNumber { get; set; }
+            Console.WriteLine();
+
+            var passedCountWithLinq = studentList.Count(x => x.Passed);
+
+            Console.WriteLine($"Sono passati {passedCountWithLinq} studenti.");
+
+            Console.WriteLine();
+
+            var startsWithCCount = studentList.Count(x => x.Name.StartsWith("C"));
+
+            Console.WriteLine($"{startsWithCCount} studenti hanno il nome che comincia per 'c'.");
+
+            Console.WriteLine();
+
+            var passedNameList = studentList
+                .Where(x => x.Passed)
+                .Select(x => x.Name);
+
+            Console.WriteLine("Gli studenti promossi sono:");
+
+            foreach(var name in passedNameList)
+                Console.WriteLine(name);
+
+            Console.WriteLine();
+
+            var evenTo100 = Enumerable
+                .Range(1, 100)
+                .Where(i => i % 2 == 0);
+
+            foreach (var i in evenTo100)
+                Console.WriteLine(i);
+
+            var squaresTo100 = Enumerable
+                .Range(1, 100)
+                .Select(i => i * i);
+
+            Console.WriteLine();
+
+            foreach (var i in squaresTo100)
+                Console.WriteLine(i);
+
+            Console.WriteLine();
+
+            var squaresCompleteTo100 = Enumerable
+                .Range(1, 100)
+                .Select(i => new Square
+                            {
+                                Number = i,
+                                ItsSquare = i * i
+                            })
+                .Where(s => s.ItsSquare > 50)
+                .Skip(3)
+                .Take(10);
+
+            foreach(var s in squaresCompleteTo100)
+                Console.WriteLine($"Il quadrato di {s.Number} è {s.ItsSquare}");
+
+            Console.Read();
         }
 
         static IEnumerable<string> GetNamesByHand(IEnumerable<Student> students)
         {
             var nameList = new List<string>();
-            foreach(var s in students)
-            {
+
+            foreach (var s in students)
                 nameList.Add(s.Name);
-            }
+
             return nameList;
-            
         }
 
-        static int GethowStudentsByHand(IEnumerable<Student> students)
+        static int GetHowManyPassedByHand(IEnumerable<Student> students)
         {
-            int howMany = 0;
-            foreach(var s in students)
-            {
+            int howManyPassed = 0;
+
+            foreach (var s in students)
                 if (s.Passed)
-                {
-                    howMany++;
-                }
-            }
-            return howMany;
+                    howManyPassed++;
+
+            return howManyPassed;
         }
-        
+    }
+
+    class Square
+    {
+        public int Number { get; set; }
+        public int ItsSquare { get; set; }
     }
 
     class Student
@@ -76,11 +126,11 @@ namespace LinqPlays
         {
             return new List<Student>
             {
-                Create(1, "Massimo Boldi",4),
-                Create(2, "Christian de sica", 6),
-                Create(3, "Renato Pozzetto", 5),
-                Create(4, "Paolo Villaggio", 9),
-                Create(5, "Lino Banfi", 8)
+                Create(1, "Massimo Boldi", 4),
+                Create(2, "Christian De Sica", 6),
+                Create(3, "Pippo Baudo", 8),
+                Create(4, "Claudio Bisio", 9),
+                Create(5, "Pippo Franco", 2)
             };
         }
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6567EB53-C959-44DF-A233-14BDE490FC64}</ProjectGuid>
+    <ProjectGuid>{840EF3CB-3C09-45AB-B8D0-A95BDB055A9E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>LinqPlays</RootNamespace>
     <AssemblyName>LinqPlays</AssemblyName>
