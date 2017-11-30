@@ -11,9 +11,9 @@ namespace ExtensionMethods
         {
             var list = new List<int> { 23, 1, 65, 24, -4, 12 };
 
-            var max = list.Max();
+            var max = list.MaxEnum();
 
-            max = ListExtension.Max(list);
+           // max = ListExtension.Max(list); se nella dichiarazione del metodo Max non mettevo this potevo usarlo cosi
 
             Console.WriteLine("Il max è: " + max);
 
@@ -43,6 +43,21 @@ namespace ExtensionMethods
             //    }
             //}
 
+            return max;
+        }
+
+        public static int MaxEnum(this IEnumerable<int> enumerable)
+        {
+            var max = int.MinValue;
+            
+
+            foreach (var i in enumerable)
+            {
+                if (i > max)
+                {
+                    max = i;
+                }
+            }
             return max;
         }
     }
