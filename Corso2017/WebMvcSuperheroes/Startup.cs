@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebMvcPrimoTentativo.DataAccess;
 using WebMvcPrimoTentativo.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebMvcSuperheroes
 {
@@ -24,9 +25,15 @@ namespace WebMvcSuperheroes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IRepository<Teacher>>(new Repository()); //una sola istanza per tutto il progetto
-       
+
             // service.AddSingleton<IRepository<Teacher>,Repository>();
             services.AddMvc();
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConfigurationString:SqlServer"]);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

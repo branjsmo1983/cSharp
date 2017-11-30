@@ -1,0 +1,10 @@
+﻿
+@model SuperHero
+<h1>Our hero !</h1>
+<form method="post">
+    <div class="form-group">
+        <label class="control-label" asp-for="HeroName"></label>
+        <input class="form-control" asp-for="HeroName" />
+        <span asp-validation-for="HeroName"></span>
+    </div>
+    </form>
