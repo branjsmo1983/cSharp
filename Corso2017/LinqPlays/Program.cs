@@ -8,11 +8,16 @@ namespace LinqPlays
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             //Base.Play();
-            SimpleAgent.Play();
+
+            //SimpleAgents.Play();
+
+            ComplexAgents.Play();
+
             Console.Read();
         }
     }
+
 }

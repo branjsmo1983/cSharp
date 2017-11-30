@@ -8,7 +8,6 @@ namespace LinqPlays
 {
     static class Base
     {
-
         public static void Play()
         {
             var studentList = Student.CreateList();
