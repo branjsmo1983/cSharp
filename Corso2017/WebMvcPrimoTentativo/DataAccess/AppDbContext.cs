@@ -8,7 +8,15 @@ using WebMvcPrimoTentativo.Models;
 namespace WebMvcPrimoTentativo.DataAccess
 {
     public class AppDbContext : DbContext
+
     {
+        public AppDbContext():base()
+        {
+
+        }
+
+       
+
         public DbSet<Teacher> Teachers { get; set; }
     }
 }
