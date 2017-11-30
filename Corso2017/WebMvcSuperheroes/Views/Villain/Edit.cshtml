@@ -1,0 +1,38 @@
+﻿@model Villain
+
+@{
+    ViewData["Title"] = "Edit Villain";
+
+    var heroes = (List<SuperHero>)ViewData["heroes"];
+    var heroesList = new SelectList(
+        heroes,
+        nameof(SuperHero.Id),
+        nameof(SuperHero.HeroName));
+}
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<h1>Our Villain</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label class="control-label" asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Nemesis"></label>
+        <select class="form-control"
+                asp-for="NemesisId"
+                asp-items="heroesList">
+        </select>
+        <span asp-validation-for="Nemesis"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Save" />
+    </div>
+</form>

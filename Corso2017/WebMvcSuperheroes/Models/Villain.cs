@@ -9,7 +9,9 @@ namespace WebMvcSuperheroes.Models
         public string Name { get; set; }
 
         public int NemesisId { get; set; }
-        //attributo che serve se la propr
+
+        //l'attributo serve se proprietà con l'oggetto e proprietà con l'Id
+        //non coincidono
         //[ForeignKey(nameof(NemesisId))]
         public SuperHero Nemesis { get; set; }
     }

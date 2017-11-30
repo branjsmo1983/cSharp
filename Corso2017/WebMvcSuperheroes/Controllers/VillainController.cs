@@ -1,43 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebMvcSuperheroes.DataAccess;
 using WebMvcSuperheroes.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebMvcSuperheroes.Controllers
 {
-    public class SuperHeroController : Controller
+    public class VillainController : Controller
     {
         private AppDbContext _context;
 
-        public SuperHeroController(AppDbContext context)
+        public VillainController(AppDbContext context)
         {
             _context = context;
         }
 
         public ViewResult Index()
         {
-            var models = _context.SuperHeroes.ToList();
+            var models = _context.Villains
+                .Include(x => x.Nemesis)
+                .ToList();
 
             return View(models);
         }
 
         public ViewResult Edit(int id)
         {
-            SuperHero model;
+            Villain model;
 
             if (id == 0)
-                model = new SuperHero();
+                model = new Villain();
             else
-                model = _context.SuperHeroes.Single(x => x.Id == id);
+                model = _context.Villains
+                    .Include(x => x.Nemesis)
+                    .Single(x => x.Id == id);
+
+            var heroes = _context.SuperHeroes.ToList();
+
+            ViewData["heroes"] = heroes;
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(SuperHero model)
+        public IActionResult Edit(Villain model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -45,17 +52,17 @@ namespace WebMvcSuperheroes.Controllers
             try
             {
                 if (model.Id == 0)
-                    _context.SuperHeroes.Add(model);
+                    _context.Villains.Add(model);
                 else
-                    _context.SuperHeroes.Update(model);
+                    _context.Villains.Update(model);
 
                 _context.SaveChanges();
 
-                TempData["message"] = "Hero updated with success";
+                TempData["message"] = "Villain updated with success";
             }
             catch (Exception)
             {
-                TempData["message"] = "Error on updating Hero!";
+                TempData["message"] = "Error on updating Villain!";
             }
 
             return RedirectToAction(nameof(Index));

@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
 using WebMvcSuperheroes.Models;
 
 namespace WebMvcSuperheroes.DataAccess
@@ -19,5 +14,6 @@ namespace WebMvcSuperheroes.DataAccess
         { }
 
         public DbSet<SuperHero> SuperHeroes { get; set; }
+        public DbSet<Villain> Villains { get; set; }
     }
 }
